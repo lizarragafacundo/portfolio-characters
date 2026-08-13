@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+### Patch Changes
+
+- [`a356148`](https://github.com/lizarragafacundo/portfolio-characters/commit/a356148f1ae3cb0160059f4889974965b9a06287) Thanks [@lizarragafacundo](https://github.com/lizarragafacundo)! - First publish to npm.
+
 While the package is `0.x`, a minor bump may contain breaking changes.
 
 ## 0.1.0
