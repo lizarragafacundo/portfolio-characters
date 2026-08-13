@@ -47,6 +47,11 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
+    "./builder": {
+      "types": "./dist/builder/index.d.ts",
+      "import": "./dist/builder/index.js"
+    },
+    "./builder.css": "./dist/builder.css",
     "./personas": {
       "types": "./dist/personas/index.d.ts",
       "import": "./dist/personas/index.js"
@@ -79,6 +84,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.6.4",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",

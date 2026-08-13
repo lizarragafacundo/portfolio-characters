@@ -9,16 +9,8 @@ import type {
   PresetId,
   SkinToneId,
 } from './partTypes'
-import {
-  beardStyles,
-  eyeStyles,
-  glassesStyles,
-  hairColors,
-  hairStyles,
-  mouthStyles,
-  presets,
-  skinTones,
-} from './registry'
+import { isKnownPartId } from './catalogues'
+import { presets } from './registry'
 
 export const DEFAULT_PRESET: PresetId = 'facu-02'
 
@@ -47,19 +39,6 @@ export const APPEARANCE_KEYS = [
   'glasses',
 ] as const satisfies readonly (keyof Preset)[]
 
-const CATALOGUES: { [K in keyof Preset]: Record<string, unknown> } = {
-  skinTone: skinTones,
-  hair: hairStyles,
-  hairColor: hairColors,
-  eyes: eyeStyles,
-  mouth: mouthStyles,
-  beard: beardStyles,
-  glasses: glassesStyles,
-}
-
-const knownId = <K extends keyof Preset>(key: K, value: unknown): value is Preset[K] =>
-  typeof value === 'string' && value in CATALOGUES[key]
-
 const presetFor = (id: PresetId | undefined): PresetId =>
   id !== undefined && id in presets ? id : DEFAULT_PRESET
 
@@ -83,7 +62,7 @@ export const resolveAppearance = (...sources: (Appearance | undefined)[]): Resol
     )
     return {
       ...accumulated,
-      [key]: knownId(key, override) ? override : base[key],
+      [key]: isKnownPartId(key, override) ? override : base[key],
     }
   }, {} as Preset)
 
