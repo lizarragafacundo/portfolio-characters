@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* The controls float over the scene, which is why they carry their own
+   background — the scene's is a theme token that changes underneath them. */
+.controls {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 2px solid currentColor;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.86);
+  backdrop-filter: blur(6px);
+  color: #7326d3;
+  font-size: 12px;
+}
+
+.controls label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls select {
+  font: inherit;
+  padding: 2px 4px;
+}
+
+.filler {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.filler div {
+  height: 38vh;
+  border: 2px dashed currentColor;
+  border-radius: 16px;
+  opacity: 0.25;
+}

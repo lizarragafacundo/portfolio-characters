@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm run test
+      - run: pnpm run validate:persona
+      - run: pnpm run build
+
+      # The package is consumed as a git dependency, so `dist/` correctness is the
+      # contract. If any of these are missing, every consumer breaks on install
+      # with a module-resolution error that gives no hint about the real cause.
+      - name: Assert the published surface exists
+        run: |
+          for f in dist/index.js dist/index.d.ts dist/styles.css dist/personas/index.js dist/personas/index.d.ts; do
+            test -f "$f" || { echo "::error::$f missing from the build output"; exit 1; }
+          done
+
+      # tsup marks react external; if that ever regresses the bundle ships its own
+      # copy of React and consumers get two renderers and an invalid-hook crash.
+      - name: Assert React stayed external
+        run: |
+          grep -qE "from ['\"]react['\"]" dist/index.js \
+            || { echo "::error::dist/index.js does not import react as an external"; exit 1; }
+
+      # esbuild strips source directives when bundling, so this is re-added by a
+      # tsup banner. If the banner is lost, every Next.js App Router consumer
+      # breaks with an error that points at their file instead of this package.
+      - name: Assert the 'use client' directive survived
+        run: |
+          head -c 20 dist/index.js | grep -q "use client" \
+            || { echo "::error::dist/index.js is missing its 'use client' directive"; exit 1; }
+          head -c 20 dist/personas/index.js | grep -q "use client" \
+            && { echo "::error::personas must not be client-only"; exit 1; }
+          exit 0
+
+      - run: pnpm pack
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-tarball
+          path: '*.tgz'

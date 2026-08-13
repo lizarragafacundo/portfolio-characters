@@ -1,0 +1,926 @@
+diff --git a/examples/next-app/pnpm-lock.yaml b/examples/next-app/pnpm-lock.yaml
+index fe0f422..ab84d25 100644
+--- a/examples/next-app/pnpm-lock.yaml
++++ b/examples/next-app/pnpm-lock.yaml
+@@ -5,6 +5,7 @@ settings:
+   excludeLinksFromLockfile: false
+ 
+ importers:
++
+   .:
+     dependencies:
+       '@lizdevs/desk-character':
+@@ -34,382 +35,245 @@ importers:
+         version: 5.9.3
+ 
+ packages:
++
+   '@emnapi/runtime@1.11.3':
+-    resolution:
+-      {
+-        integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==,
+-      }
++    resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
+ 
+   '@img/colour@1.1.0':
+-    resolution:
+-      {
+-        integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==,
+-      }
+-    engines: { node: '>=18' }
++    resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
++    engines: {node: '>=18'}
+ 
+   '@img/sharp-darwin-arm64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-imtQ3WMJXbMY4fxb/Ndp6HBTNVtWCUI0WdobyheGf5+ad6xX8VIDO8u2xE4qc/fr08CKG/7dDseFtn6M6g/r3w==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-imtQ3WMJXbMY4fxb/Ndp6HBTNVtWCUI0WdobyheGf5+ad6xX8VIDO8u2xE4qc/fr08CKG/7dDseFtn6M6g/r3w==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [arm64]
+     os: [darwin]
+ 
+   '@img/sharp-darwin-x64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-YNEFAF/4KQ/PeW0N+r+aVVsoIY0/qxxikF2SWdp+NRkmMB7y9LBZAVqQ4yhGCm/H3H270OSykqmQMKLBhBJDEw==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-YNEFAF/4KQ/PeW0N+r+aVVsoIY0/qxxikF2SWdp+NRkmMB7y9LBZAVqQ4yhGCm/H3H270OSykqmQMKLBhBJDEw==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [x64]
+     os: [darwin]
+ 
+   '@img/sharp-libvips-darwin-arm64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-zqjjo7RatFfFoP0MkQ51jfuFZBnVE2pRiaydKJ1G/rHZvnsrHAOcQALIi9sA5co5xenQdTugCvtb1cuf78Vf4g==,
+-      }
++    resolution: {integrity: sha512-zqjjo7RatFfFoP0MkQ51jfuFZBnVE2pRiaydKJ1G/rHZvnsrHAOcQALIi9sA5co5xenQdTugCvtb1cuf78Vf4g==}
+     cpu: [arm64]
+     os: [darwin]
+ 
+   '@img/sharp-libvips-darwin-x64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-1IOd5xfVhlGwX+zXv2N93k0yMONvUlANylbJw1eTah8K/Jtpi15KC+WSiaX/nBmbm2HxRM1gZ0nSdjSsrZbGKg==,
+-      }
++    resolution: {integrity: sha512-1IOd5xfVhlGwX+zXv2N93k0yMONvUlANylbJw1eTah8K/Jtpi15KC+WSiaX/nBmbm2HxRM1gZ0nSdjSsrZbGKg==}
+     cpu: [x64]
+     os: [darwin]
+ 
+   '@img/sharp-libvips-linux-arm64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==,
+-      }
++    resolution: {integrity: sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linux-arm@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==,
+-      }
++    resolution: {integrity: sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==}
+     cpu: [arm]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linux-ppc64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==,
+-      }
++    resolution: {integrity: sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==}
+     cpu: [ppc64]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linux-riscv64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==,
+-      }
++    resolution: {integrity: sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==}
+     cpu: [riscv64]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linux-s390x@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==,
+-      }
++    resolution: {integrity: sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==}
+     cpu: [s390x]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linux-x64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==,
+-      }
++    resolution: {integrity: sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linuxmusl-arm64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==,
+-      }
++    resolution: {integrity: sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@img/sharp-libvips-linuxmusl-x64@1.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==,
+-      }
++    resolution: {integrity: sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@img/sharp-linux-arm64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@img/sharp-linux-arm@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [arm]
+     os: [linux]
+ 
+   '@img/sharp-linux-ppc64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [ppc64]
+     os: [linux]
+ 
+   '@img/sharp-linux-riscv64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [riscv64]
+     os: [linux]
+ 
+   '@img/sharp-linux-s390x@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [s390x]
+     os: [linux]
+ 
+   '@img/sharp-linux-x64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@img/sharp-linuxmusl-arm64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@img/sharp-linuxmusl-x64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@img/sharp-wasm32@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [wasm32]
+ 
+   '@img/sharp-win32-arm64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-WQ3AgWCWYSb2yt+IG8mnC6Jdk9Whs7O0gxphblsLvdhSpSTtmu69ZG1Gkb6NuvxsNACwiPV6cNSZNzt0KPsw7g==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-WQ3AgWCWYSb2yt+IG8mnC6Jdk9Whs7O0gxphblsLvdhSpSTtmu69ZG1Gkb6NuvxsNACwiPV6cNSZNzt0KPsw7g==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [arm64]
+     os: [win32]
+ 
+   '@img/sharp-win32-ia32@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-FV9m/7NmeCmSHDD5j4+4pNI8Cp3aW+JvLoXcTUo0IqyjSfAZJ8dIUmijx1qaJsIiU+Hosw6xM5KijAWRJCSgNg==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-FV9m/7NmeCmSHDD5j4+4pNI8Cp3aW+JvLoXcTUo0IqyjSfAZJ8dIUmijx1qaJsIiU+Hosw6xM5KijAWRJCSgNg==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [ia32]
+     os: [win32]
+ 
+   '@img/sharp-win32-x64@0.34.5':
+-    resolution:
+-      {
+-        integrity: sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+     cpu: [x64]
+     os: [win32]
+ 
+   '@lizdevs/desk-character@file:../..':
+-    resolution: { directory: ../.., type: directory }
+-    engines: { node: '>=20.9.0' }
++    resolution: {directory: ../.., type: directory}
++    engines: {node: '>=20.9.0'}
+     peerDependencies:
+       react: '>=18'
+       react-dom: '>=18'
+ 
+   '@next/env@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-d0Z5Bc13Fa4nR8pFAKx2jay2yhJM16vlfHbTzYnUQAxlNb6B6lmn4hjt69lYNt4kRtyYP6gEM49lPRHNbIyneg==,
+-      }
++    resolution: {integrity: sha512-d0Z5Bc13Fa4nR8pFAKx2jay2yhJM16vlfHbTzYnUQAxlNb6B6lmn4hjt69lYNt4kRtyYP6gEM49lPRHNbIyneg==}
+ 
+   '@next/swc-darwin-arm64@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-0W1R0teHWJrqKX0FH20IzzIWAOuGtBxPGuObrxy1lE8hQvCFj49KE8a3WUg0D7sq6rn6zkM4c7YGUnhudBS6oA==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-0W1R0teHWJrqKX0FH20IzzIWAOuGtBxPGuObrxy1lE8hQvCFj49KE8a3WUg0D7sq6rn6zkM4c7YGUnhudBS6oA==}
++    engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [darwin]
+ 
+   '@next/swc-darwin-x64@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-Hy5Ls099+aFUmOLmIgPfLqNi6iCwhL3uQCssz5rWk+5Nkc6TUKCE83DY5BbNylfm3+mfwcSFnLRfrZDJhVxdtw==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-Hy5Ls099+aFUmOLmIgPfLqNi6iCwhL3uQCssz5rWk+5Nkc6TUKCE83DY5BbNylfm3+mfwcSFnLRfrZDJhVxdtw==}
++    engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [darwin]
+ 
+   '@next/swc-linux-arm64-gnu@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-+YqU2h1cQkHsGfvjAsrSmst8UIFBibBGm5x3Xgel8NLMiDQtNOM4sM2GOEMvG5YiOBNeN/Ykk8cQC2S0Xrqljg==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-+YqU2h1cQkHsGfvjAsrSmst8UIFBibBGm5x3Xgel8NLMiDQtNOM4sM2GOEMvG5YiOBNeN/Ykk8cQC2S0Xrqljg==}
++    engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@next/swc-linux-arm64-musl@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-0qjhiYBaKAqF63LA1ZWAAnKTzFUguAaZiRa5etMLGGPj/B6uEVjtIZldIzFEp3wHlB0koK6aTzqPtSdplTCjoA==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-0qjhiYBaKAqF63LA1ZWAAnKTzFUguAaZiRa5etMLGGPj/B6uEVjtIZldIzFEp3wHlB0koK6aTzqPtSdplTCjoA==}
++    engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [linux]
+ 
+   '@next/swc-linux-x64-gnu@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-7A3q26W+h7gnA15uqBToNuDqBEFZZcqh0mW2mn4AJh/G5pdg2RVE3n4slzLEliASZFG3NmsbEzng/x2Sh09mBg==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-7A3q26W+h7gnA15uqBToNuDqBEFZZcqh0mW2mn4AJh/G5pdg2RVE3n4slzLEliASZFG3NmsbEzng/x2Sh09mBg==}
++    engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@next/swc-linux-x64-musl@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-qSjL/uppm+cbh21s72Ss8gkiOhQ4dExWHNGOWy6eZV7STj5WsKehgxT61beSsOj+YYQuTplL376lOCdMQU5T8w==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-qSjL/uppm+cbh21s72Ss8gkiOhQ4dExWHNGOWy6eZV7STj5WsKehgxT61beSsOj+YYQuTplL376lOCdMQU5T8w==}
++    engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [linux]
+ 
+   '@next/swc-win32-arm64-msvc@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-X6hzsOUJac/e7AWSbn9gQ9nzHld1xWP5iyjHpYWvud8pufB679O1xg4JDyKr8Xd69Jvd+kM2Der6uftiZCmjYA==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-X6hzsOUJac/e7AWSbn9gQ9nzHld1xWP5iyjHpYWvud8pufB679O1xg4JDyKr8Xd69Jvd+kM2Der6uftiZCmjYA==}
++    engines: {node: '>= 10'}
+     cpu: [arm64]
+     os: [win32]
+ 
+   '@next/swc-win32-x64-msvc@16.2.12':
+-    resolution:
+-      {
+-        integrity: sha512-F6fakeHuFTLOPt0bslQJdf+xtT+WIP9DVn/m4y1w1mRnVPyh3D/cNvzlRkxM444xfm+IvvYNSOrKiA2CDJ0Uxw==,
+-      }
+-    engines: { node: '>= 10' }
++    resolution: {integrity: sha512-F6fakeHuFTLOPt0bslQJdf+xtT+WIP9DVn/m4y1w1mRnVPyh3D/cNvzlRkxM444xfm+IvvYNSOrKiA2CDJ0Uxw==}
++    engines: {node: '>= 10'}
+     cpu: [x64]
+     os: [win32]
+ 
+   '@swc/helpers@0.5.15':
+-    resolution:
+-      {
+-        integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==,
+-      }
++    resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
+ 
+   '@types/node@22.20.1':
+-    resolution:
+-      {
+-        integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==,
+-      }
++    resolution: {integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==}
+ 
+   '@types/react-dom@19.2.4':
+-    resolution:
+-      {
+-        integrity: sha512-Bsc+QHgp+P/F02XDzNCY9jnZNCUuLki36KT7VKrTXXLdHf+vHMNZnW1rVu5DNW/rCK+fya3DATySbLM4yhtKUw==,
+-      }
++    resolution: {integrity: sha512-Bsc+QHgp+P/F02XDzNCY9jnZNCUuLki36KT7VKrTXXLdHf+vHMNZnW1rVu5DNW/rCK+fya3DATySbLM4yhtKUw==}
+     peerDependencies:
+       '@types/react': ^19.2.0
+ 
+   '@types/react@19.2.18':
+-    resolution:
+-      {
+-        integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==,
+-      }
++    resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
+ 
+   baseline-browser-mapping@2.11.9:
+-    resolution:
+-      {
+-        integrity: sha512-cp447VUsGS07+n1Dqf7YSQ8maeJrjEhaDxTm1ZefbqDtypHBC5GzGMQbklR6IPR13Y8OAJRHZWEMtZipJLCttg==,
+-      }
+-    engines: { node: '>=6.0.0' }
++    resolution: {integrity: sha512-cp447VUsGS07+n1Dqf7YSQ8maeJrjEhaDxTm1ZefbqDtypHBC5GzGMQbklR6IPR13Y8OAJRHZWEMtZipJLCttg==}
++    engines: {node: '>=6.0.0'}
+     hasBin: true
+ 
+   caniuse-lite@1.0.30001806:
+-    resolution:
+-      {
+-        integrity: sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==,
+-      }
++    resolution: {integrity: sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==}
+ 
+   client-only@0.0.1:
+-    resolution:
+-      {
+-        integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
+-      }
++    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+ 
+   csstype@3.2.3:
+-    resolution:
+-      {
+-        integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==,
+-      }
++    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+ 
+   detect-libc@2.1.2:
+-    resolution:
+-      {
+-        integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==,
+-      }
+-    engines: { node: '>=8' }
++    resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
++    engines: {node: '>=8'}
+ 
+   nanoid@3.3.16:
+-    resolution:
+-      {
+-        integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==,
+-      }
+-    engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
++    resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
++    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+     hasBin: true
+ 
+   next@16.2.12:
+-    resolution:
+-      {
+-        integrity: sha512-iD59eYQWmbFcEbX7v/acG5DRym9iw1DdaPoD0WTA920naWsE25wShzJW4+UvAs8MK9EC2kBfIH6vtto1H1PHGw==,
+-      }
+-    engines: { node: '>=20.9.0' }
++    resolution: {integrity: sha512-iD59eYQWmbFcEbX7v/acG5DRym9iw1DdaPoD0WTA920naWsE25wShzJW4+UvAs8MK9EC2kBfIH6vtto1H1PHGw==}
++    engines: {node: '>=20.9.0'}
+     hasBin: true
+     peerDependencies:
+       '@opentelemetry/api': ^1.1.0
+@@ -429,67 +293,40 @@ packages:
+         optional: true
+ 
+   picocolors@1.1.1:
+-    resolution:
+-      {
+-        integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==,
+-      }
++    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+ 
+   postcss@8.4.31:
+-    resolution:
+-      {
+-        integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==,
+-      }
+-    engines: { node: ^10 || ^12 || >=14 }
++    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
++    engines: {node: ^10 || ^12 || >=14}
+ 
+   react-dom@19.2.0:
+-    resolution:
+-      {
+-        integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==,
+-      }
++    resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
+     peerDependencies:
+       react: ^19.2.0
+ 
+   react@19.2.0:
+-    resolution:
+-      {
+-        integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==,
+-      }
+-    engines: { node: '>=0.10.0' }
++    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
++    engines: {node: '>=0.10.0'}
+ 
+   scheduler@0.27.0:
+-    resolution:
+-      {
+-        integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==,
+-      }
++    resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
+ 
+   semver@7.8.5:
+-    resolution:
+-      {
+-        integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==,
+-      }
+-    engines: { node: '>=10' }
++    resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
++    engines: {node: '>=10'}
+     hasBin: true
+ 
+   sharp@0.34.5:
+-    resolution:
+-      {
+-        integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==,
+-      }
+-    engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
++    resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
++    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+ 
+   source-map-js@1.2.1:
+-    resolution:
+-      {
+-        integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==,
+-      }
+-    engines: { node: '>=0.10.0' }
++    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
++    engines: {node: '>=0.10.0'}
+ 
+   styled-jsx@5.1.6:
+-    resolution:
+-      {
+-        integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==,
+-      }
+-    engines: { node: '>= 12.0.0' }
++    resolution: {integrity: sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==}
++    engines: {node: '>= 12.0.0'}
+     peerDependencies:
+       '@babel/core': '*'
+       babel-plugin-macros: '*'
+@@ -501,26 +338,18 @@ packages:
+         optional: true
+ 
+   tslib@2.8.1:
+-    resolution:
+-      {
+-        integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==,
+-      }
++    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+ 
+   typescript@5.9.3:
+-    resolution:
+-      {
+-        integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==,
+-      }
+-    engines: { node: '>=14.17' }
++    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
++    engines: {node: '>=14.17'}
+     hasBin: true
+ 
+   undici-types@6.21.0:
+-    resolution:
+-      {
+-        integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==,
+-      }
++    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+ 
+ snapshots:
++
+   '@emnapi/runtime@1.11.3':
+     dependencies:
+       tslib: 2.8.1
+diff --git a/src/character/Character.tsx b/src/character/Character.tsx
+index 7d1e2ba..5d94e7f 100644
+--- a/src/character/Character.tsx
++++ b/src/character/Character.tsx
+@@ -20,26 +20,20 @@ export interface CharacterProps {
+   blink?: boolean
+ }
+ 
+-const Eyelid = ({ cx, delay }: { cx: number; delay: number }) => (
+-  <g
+-    data-amb=""
+-    style={{
+-      transformBox: 'fill-box',
+-      transformOrigin: 'top',
+-      transform: 'scaleY(0)',
+-      animation: `chblink 5.4s ease-in-out ${delay}s infinite`,
+-    }}
+-  >
+-    <ellipse cx={cx} cy={205} rx={11} ry={11} fill="var(--dc-fill)" stroke="none" />
+-    <path
+-      d={`M${cx - 10},216 C${cx - 4},219 ${cx + 4},219 ${cx + 10},215`}
++const Eye = ({ cx }: { cx: number }) => (
++  <>
++    <circle
++      cx={cx}
++      cy="212"
++      r="7"
+       fill="none"
+       stroke="var(--dc-ink)"
+-      strokeWidth="2.4"
+-      strokeLinecap="round"
+-      vectorEffect="non-scaling-stroke"
++      strokeWidth="2.6"
++      pathLength={1}
++      style={draw(0.4, 1.62)}
+     />
+-  </g>
++    <circle cx={cx} cy="212" r="2.6" fill="var(--dc-ink)" data-fillel="" style={fill(0.3, 1.72)} />
++  </>
+ )
+ 
+ export const Character = ({
+@@ -316,51 +310,39 @@ export const Character = ({
+               />
+             </g>
+ 
+-            <g data-fl="eyeL">
++            <g
++              data-fl="eyeL"
++              {...(blink ? { 'data-amb': '' } : {})}
++              style={
++                blink
++                  ? {
++                      transformBox: 'fill-box',
++                      transformOrigin: 'center',
++                      animation: 'chblink 5.4s ease-in-out infinite',
++                    }
++                  : undefined
++              }
++            >
+               <g ref={refs.leftPupil}>
+-                <circle
+-                  cx="175"
+-                  cy="212"
+-                  r="7"
+-                  fill="none"
+-                  stroke="var(--dc-ink)"
+-                  strokeWidth="2.6"
+-                  pathLength={1}
+-                  style={draw(0.4, 1.62)}
+-                />
+-                <circle
+-                  cx="175"
+-                  cy="212"
+-                  r="2.6"
+-                  fill="var(--dc-ink)"
+-                  data-fillel=""
+-                  style={fill(0.3, 1.72)}
+-                />
++                <Eye cx={175} />
+               </g>
+-              {blink ? <Eyelid cx={175} delay={0} /> : null}
+             </g>
+-            <g data-fl="eyeR">
++            <g
++              data-fl="eyeR"
++              {...(blink ? { 'data-amb': '' } : {})}
++              style={
++                blink
++                  ? {
++                      transformBox: 'fill-box',
++                      transformOrigin: 'center',
++                      animation: 'chblink 5.4s ease-in-out infinite',
++                    }
++                  : undefined
++              }
++            >
+               <g ref={refs.rightPupil}>
+-                <circle
+-                  cx="265"
+-                  cy="212"
+-                  r="7"
+-                  fill="none"
+-                  stroke="var(--dc-ink)"
+-                  strokeWidth="2.6"
+-                  pathLength={1}
+-                  style={draw(0.4, 1.62)}
+-                />
+-                <circle
+-                  cx="265"
+-                  cy="212"
+-                  r="2.6"
+-                  fill="var(--dc-ink)"
+-                  data-fillel=""
+-                  style={fill(0.3, 1.72)}
+-                />
++                <Eye cx={265} />
+               </g>
+-              {blink ? <Eyelid cx={265} delay={0.04} /> : null}
+             </g>
+ 
+             {glasses ? (
+diff --git a/src/geometry.ts b/src/geometry.ts
+index babe784..1f30293 100644
+--- a/src/geometry.ts
++++ b/src/geometry.ts
+@@ -1,12 +1,12 @@
+-const SCREEN = { x: 674.1, y: 339.6, w: 132.3, h: 90.6 }
++const SCREEN = { x: 624, y: 306, w: 194, h: 142 }
+ 
+ const CHARACTER = { x: 283.5, y: 66, w: 333 }
+ 
+-const LAPTOP_PIVOT = { x: 741, y: 484 }
++const LAPTOP_PIVOT = { x: 721, y: 480 }
+ 
+-const LID_HINGE = { x: 741, y: 438 }
++const LID_HINGE = { x: 721, y: 458 }
+ 
+-const TYPE = 9.45
++const TYPE = 10.2
+ 
+ export interface LaptopTransform {
+   group: string
+@@ -69,7 +69,7 @@ const crop = ({ x, y, w, h, laptopScale = 1, laptopTilt = 0 }: CropSpec): Geomet
+ export const VARIANTS = {
+   scene: crop({ x: 0, y: 0, w: 900, h: 600 }),
+ 
+-  desk: crop({ x: 36, y: 44, w: 858, h: 476, laptopScale: 1.3, laptopTilt: 20 }),
++  desk: crop({ x: 36, y: 44, w: 858, h: 476, laptopScale: 1.12 }),
+ } as const satisfies Record<string, Geometry>
+ 
+ export type VariantName = keyof typeof VARIANTS
+diff --git a/src/scene/FrontScene.tsx b/src/scene/FrontScene.tsx
+index 295c6e9..b6c6ca5 100644
+--- a/src/scene/FrontScene.tsx
++++ b/src/scene/FrontScene.tsx
+@@ -185,63 +185,25 @@ export const FrontScene = forwardRef<SVGSVGElement, FrontSceneProps>(function Fr
+         </g>
+ 
+         <g transform={laptop.group}>
+-          <g transform={laptop.lid}>
+-            <path
+-              d="M666,336 C666,332 668,330 672,330 L808,330 C812,330 814,332 814,336 L814,438 L666,438 Z"
+-              fill="var(--dc-fill)"
+-              strokeWidth="3.2"
+-              pathLength={1}
+-              style={draw(0.55, 0.18, EASE_DRAW)}
+-            />
+-            <path
+-              d="M674,338 L806,338 L806,430 L674,430 Z"
+-              fill="var(--dc-tint)"
+-              strokeWidth="2"
+-              pathLength={1}
+-              style={draw(0.45, 0.3)}
+-            />
+-            <path
+-              d="M739,334 C741,334 741,336 739,336 C737,336 737,334 739,334 Z"
+-              strokeWidth="1.6"
+-              pathLength={1}
+-              style={draw(0.3, 0.42)}
+-            />
+-          </g>
+-          <path
+-            d="M664,438 L816,438 L842,478 C844,482 841,484 837,484 L643,484 C639,484 636,482 638,478 Z"
++          <rect
++            x="605"
++            y="297"
++            width="232"
++            height="163"
++            rx="14"
+             fill="var(--dc-fill)"
+-            strokeWidth="3.2"
++            fillOpacity="0.62"
++            strokeWidth="3.6"
+             pathLength={1}
+-            style={draw(0.55, 0.1, EASE_DRAW)}
++            style={draw(0.55, 0.18, EASE_DRAW)}
+           />
+           <path
+-            d="M672,446 L808,446 L826,472 L654,472 Z"
+-            fill="var(--dc-fill)"
++            d="M582,452 L860,452 L860,459 C860,472 850,482 837,482 L605,482 C592,482 582,472 582,459 Z"
++            fill="var(--dc-ink)"
++            stroke="var(--dc-ink)"
+             strokeWidth="2"
+             pathLength={1}
+-            style={draw(0.45, 0.32)}
+-          />
+-          <g
+-            strokeWidth="2.2"
+-            opacity="0.5"
+-            strokeDasharray="6 4"
+-            data-fillel=""
+-            style={fill(0.4, 0.48)}
+-          >
+-            <path d="M678,452 L802,452 M674,459 L806,459 M669,466 L811,466" />
+-          </g>
+-          <path
+-            d="M716,476 L764,476 L768,481 L712,481 Z"
+-            strokeWidth="1.8"
+-            opacity="0.55"
+-            pathLength={1}
+-            style={draw(0.4, 0.5)}
+-          />
+-          <path
+-            d="M688,438 L700,438 M780,438 L792,438"
+-            strokeWidth="2.6"
+-            pathLength={1}
+-            style={draw(0.35, 0.44)}
++            style={draw(0.5, 0.12, EASE_DRAW)}
+           />
+         </g>
+ 
+diff --git a/src/styles.css b/src/styles.css
+index 4620e89..f3adb57 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -92,11 +92,11 @@
+   0%,
+   92%,
+   100% {
+-    transform: scaleY(0);
++    transform: scaleY(1);
+   }
+   94%,
+   96% {
+-    transform: scaleY(1);
++    transform: scaleY(0.08);
+   }
+ }
+ 
+diff --git a/src/terminal/Terminal.tsx b/src/terminal/Terminal.tsx
+index 1357a03..e24613b 100644
+--- a/src/terminal/Terminal.tsx
++++ b/src/terminal/Terminal.tsx
+@@ -49,7 +49,6 @@ export const Terminal = forwardRef<HTMLDivElement, TerminalProps>(function Termi
+             width: '100%',
+             height: '100%',
+             transformOrigin: laptop.tiltOrigin,
+-            transform: `skewX(${-laptop.tilt}deg)`,
+             display: 'flex',
+             flexDirection: 'column',
+             gap: unit(2),
+diff --git a/tests/render.test.tsx b/tests/render.test.tsx
+index c6c6a96..aff655f 100644
+--- a/tests/render.test.tsx
++++ b/tests/render.test.tsx
+@@ -39,7 +39,7 @@ describe('<DeskCharacter />', () => {
+   it('marks the drawn and filled elements bake() has to freeze', () => {
+     const { container } = render(<DeskCharacter persona={facundo} />)
+     expect(container.querySelectorAll('[pathLength]').length).toBeGreaterThan(50)
+-    expect(container.querySelectorAll('[data-fillel]').length).toBeGreaterThan(20)
++    expect(container.querySelectorAll('[data-fillel]').length).toBeGreaterThanOrEqual(20)
+   })
+ 
+   it('marks the looping decorations so they can be stripped on slow devices', () => {
+@@ -72,21 +72,24 @@ describe('<DeskCharacter />', () => {
+     const { container: on } = render(<DeskCharacter persona={facundo} />)
+     const { container: off } = render(<DeskCharacter persona={facundo} blink={false} />)
+ 
+-    const lids = [...on.querySelectorAll('[style*="chblink"]')]
+-    expect(lids).toHaveLength(2)
+-    for (const lid of lids) expect(lid).toHaveAttribute('data-amb')
++    const eyes = [...on.querySelectorAll('[data-fl^="eye"][style*="chblink"]')]
++    expect(eyes).toHaveLength(2)
++    expect(eyes.map((eye) => eye.getAttribute('data-fl'))).toEqual(['eyeL', 'eyeR'])
++    for (const eye of eyes) {
++      expect(eye).toHaveAttribute('data-amb')
++      expect(eye.querySelectorAll('circle')).toHaveLength(2)
++    }
+ 
+     expect(off.querySelectorAll('[style*="chblink"]')).toHaveLength(0)
+   })
+ 
+-  it('keeps each eyelid inside its eye but outside the pupil group', () => {
++  it('blinks the circles inside each gaze-controlled eye group', () => {
+     const { container } = render(<DeskCharacter persona={facundo} />)
+ 
+     for (const eye of ['eyeL', 'eyeR']) {
+       const group = container.querySelector(`[data-fl="${eye}"]`)
+-      const lid = group?.querySelector('[style*="chblink"]')
+-      expect(lid, eye).not.toBeNull()
+-      expect(lid?.parentElement).toBe(group)
++      expect((group as SVGGElement).style.animation).toContain('chblink')
++      expect(group?.querySelectorAll('circle')).toHaveLength(2)
+     }
+   })
+ 
+@@ -97,26 +100,25 @@ describe('<DeskCharacter />', () => {
+     expect((container.querySelector('.dc-scene') as HTMLElement).style.minHeight).toBe('')
+   })
+ 
+-  it('scales and tilts the laptop, and moves the terminal with it', () => {
++  it('scales the laptop while keeping its prioritized screen frontal', () => {
+     const { container } = render(<DeskCharacter persona={facundo} variant="desk" dock={false} />)
+     const html = container.innerHTML
+ 
+-    expect(html).toContain('scale(1.3)')
+-    expect(html).toContain('skewX(-20)')
+-    expect(html).toContain('skewX(-20deg)')
++    expect(html).toContain('scale(1.12)')
++    expect(html).not.toContain('skewX(')
+   })
+ 
+   it('keeps the scroll fade off the element carrying the laptop scale', () => {
+     const { container } = render(<DeskCharacter persona={facundo} variant="desk" dock={false} />)
+     const faded = container.querySelector('[style*="container-type"]') as HTMLElement
+     expect(faded.style.transform).toBe('')
+-    expect(faded.querySelector('[style*="scale(1.3)"]')).not.toBeNull()
++    expect(faded.querySelector('[style*="scale(1.12)"]')).not.toBeNull()
+   })
+ 
+   it('leaves the laptop untransformed in the full scene', () => {
+     const { container } = render(<DeskCharacter persona={facundo} />)
+     expect(container.innerHTML).toContain('scale(1)')
+-    expect(container.innerHTML).toContain('skewX(0)')
++    expect(container.innerHTML).not.toContain('skewX(')
+   })
+ 
+   it('renders children below the scene', () => {

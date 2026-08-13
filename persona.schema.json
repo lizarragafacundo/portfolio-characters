@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/facundo-lizdevs/desk-character/persona.schema.json",
+  "title": "Persona",
+  "description": "Everything that makes the desk character a specific person. This file is the contract: hand it to an LLM together with your CV and it has enough to write a valid persona without seeing the source.",
+  "type": "object",
+  "required": ["name", "role", "location", "script"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Your full name."
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Your job title, as you would want it read aloud."
+    },
+    "location": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City and country, optionally with a work-mode note."
+    },
+    "glasses": {
+      "type": "boolean",
+      "default": true,
+      "description": "Draw glasses on the character."
+    },
+    "hair": {
+      "enum": ["short", "long"],
+      "default": "short",
+      "description": "'long' adds hair falling past the shoulders."
+    },
+    "script": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 9,
+      "description": "The commands the character types, in order. Five to seven is the useful range: fewer and it reads as a gimmick, more and nobody sees the end. Give each one a different discipline.",
+      "items": { "$ref": "#/$defs/frame" }
+    }
+  },
+  "$defs": {
+    "frame": {
+      "type": "object",
+      "required": ["prompt", "lines"],
+      "additionalProperties": false,
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 22,
+          "description": "The command, including the leading '$ '. It does not have to be a real command — it has to read like one. 22 characters is what fits on the screen.",
+          "examples": ["$ ls stack/frontend", "$ terraform apply", "$ ollama ps"]
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 6,
+          "description": "Output. In the default 'grid' layout these are laid out two per row, so 6 tokens fill the screen exactly. Anything beyond 6 renders behind the laptop bezel and is invisible.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "layout": {
+          "enum": ["grid", "list"],
+          "default": "grid",
+          "description": "'grid' pairs the lines into two columns and caps each at 10 characters. 'list' gives each its own full-width row, which fits 3 lines instead of 6 — use it for sentences."
+        },
+        "hold": {
+          "type": "integer",
+          "minimum": 400,
+          "maximum": 6000,
+          "default": 1400,
+          "description": "Milliseconds the completed frame stays on screen before clearing."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "layout": { "const": "list" } }, "required": ["layout"] },
+          "then": { "properties": { "lines": { "maxItems": 3 } } },
+          "else": {
+            "properties": { "lines": { "items": { "maxLength": 10 } } }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,123 @@
+/*
+ * Every animation in the scene, in one file.
+ *
+ * These are keyframes only — no layout, no colour, no resets. The component sets
+ * `animation` inline per element (each of the ~80 drawn paths has its own
+ * duration and delay, which is what makes the drawing look hand-paced rather
+ * than mechanical) and this file just declares what those names mean.
+ *
+ * The `ch` prefix is from the original design file. It stays: renaming would
+ * silently break anyone who copied an element out of it.
+ */
+
+/* Line-drawing. Paired with stroke-dasharray:1 + pathLength="1", so one
+   keyframe works for every path regardless of its real length. */
+@keyframes chdraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Flat fills fading in behind the strokes that bound them. */
+@keyframes chfill {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes chcloudA {
+  from {
+    transform: translateX(-150px);
+  }
+  to {
+    transform: translateX(230px);
+  }
+}
+
+@keyframes chcloudB {
+  from {
+    transform: translateX(-190px);
+  }
+  to {
+    transform: translateX(250px);
+  }
+}
+
+@keyframes chsteam {
+  0% {
+    transform: translateY(6px) scaleX(0.9);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(-30px) scaleX(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes chsway {
+  0%,
+  100% {
+    transform: rotate(-1.8deg);
+  }
+  50% {
+    transform: rotate(1.8deg);
+  }
+}
+
+@keyframes chcaret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/*
+ * Blink.
+ *
+ * The lid is shut for ~4% of a 5.4s cycle — about 220ms, which is roughly a real
+ * blink. The percentages are lopsided on purpose: a symmetric close/open reads
+ * as a wink or a flinch, so the close is one keyframe step and the open is two.
+ *
+ * Driven by scaleY from the top of the lens rather than by opacity, because an
+ * eyelid that fades in over the eye looks like a ghost, not a lid.
+ */
+@keyframes chblink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  94%,
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+
+/*
+ * The component already bakes the drawing to its final state and strips ambient
+ * loops in JS when it detects the preference. This block is the belt to that
+ * braces: it covers the window between first paint and hydration, which on a
+ * slow connection is the longest part of the page's life.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .dc-scene [style*='chdraw'] {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  .dc-scene [style*='chfill'] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .dc-scene [data-amb] {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "name": "@facundolizarraga/portfolio-characters",
+  "version": "0.1.0",
+  "description": "A hand-drawn SVG desk character for developer portfolios: fully composable parts, a scripted terminal on its laptop, and a scroll-dock that follows the reader.",
+  "license": "MIT",
+  "author": "Facundo Lizarraga <faculizarraga0@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facundo-lizdevs/portfolio-characters.git"
+  },
+  "homepage": "https://github.com/facundo-lizdevs/portfolio-characters#readme",
+  "bugs": {
+    "url": "https://github.com/facundo-lizdevs/portfolio-characters/issues"
+  },
+  "keywords": [
+    "react",
+    "svg",
+    "avatar",
+    "character",
+    "animation",
+    "portfolio",
+    "illustration",
+    "terminal",
+    "scroll",
+    "flip"
+  ],
+  "type": "module",
+  "packageManager": "pnpm@9.12.3",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "PERSONA.md",
+    "persona.schema.json"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./personas": {
+      "types": "./dist/personas/index.d.ts",
+      "import": "./dist/personas/index.js"
+    },
+    "./persona.schema.json": "./persona.schema.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate:persona": "tsx scripts/validate-persona.ts",
+    "capture:reference": "tsx scripts/captureReferenceMarkup.tsx",
+    "prepack": "tsup",
+    "prepare": "tsup"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
+    "vitest": "^2.1.8"
+  }
+}
