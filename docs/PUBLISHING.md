@@ -36,16 +36,21 @@ publish rather than warning.
 
 ### 3. The npm token
 
-Create a **granular access token** with read-and-write access limited to this
-package (npmjs.com → Access Tokens → Generate New Token → Granular Access
-Token), then add it to the repository:
+Create a **granular access token** with read-and-write access, with **Bypass
+2FA** enabled (npmjs.com → Access Tokens → Generate New Token → Granular
+Access Token), then add it as a repository secret named `NPM_TOKEN`:
 
 ```sh
 gh secret set NPM_TOKEN
 ```
 
-Use a granular token rather than a classic automation token: it can be scoped
-to this one package, so a leak cannot touch anything else you publish.
+Bypass 2FA has to be on: without it, `pnpm publish` from CI fails with
+`403 Two-factor authentication ... is required to publish packages`, since
+there's no interactive prompt to enter an OTP into. A granular token scoped
+to "select packages" can't be used for the very first publish either — that
+scope only lists packages that already exist on npm. Scope it to "all
+packages" for the first release, then optionally narrow it once this package
+exists.
 
 ## Releasing
 
@@ -62,9 +67,9 @@ There is no manual release step. The flow is:
    want to read. This writes a file under `.changeset/`; commit it with your
    change.
 
-2. **On push to `main`**, the release workflow runs the full CI gate
-   (typecheck, lint, format, test, `validate:persona`, build), then hands off
-   to `changesets/action`:
+2. **Once CI passes on `main`**, `.github/workflows/release.yml` runs — it
+   does not repeat CI's checks itself, it only starts after the `CI` workflow
+   reports success for that commit — and hands off to `changesets/action`:
    - If there are changesets on `main` that haven't been released yet, it
      opens (or updates) a **"Version Packages"** pull request. That PR bumps
      `package.json` and writes `CHANGELOG.md` from the pending changesets —
