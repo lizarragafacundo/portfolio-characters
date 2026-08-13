@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import {
-  DeskCharacter,
+  PortfolioCharacter,
   MOTIONS,
   THEMES,
   type MotionName,
   type ThemeName,
-} from '@lizdevs/desk-character'
+} from '@facundolizarraga/portfolio-characters'
 import { exampleDesigner, facundo } from '@lizdevs/desk-character/personas'
 
 const PERSONAS = { facundo, exampleDesigner }
@@ -21,7 +21,7 @@ const Page = () => {
   const [terminal, setTerminal] = useState(true)
 
   return (
-    <DeskCharacter
+    <PortfolioCharacter
       persona={PERSONAS[persona]}
       theme={theme}
       dockMotion={motion}
@@ -77,7 +77,7 @@ const Page = () => {
         <div />
         <div />
       </div>
-    </DeskCharacter>
+    </PortfolioCharacter>
   )
 }
 

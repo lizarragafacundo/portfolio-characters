@@ -25,14 +25,15 @@ import { FrontScene } from './scene/FrontScene'
 import { Terminal } from './terminal/Terminal'
 import { useTerminalScript } from './terminal/useTerminalScript'
 import { resolveTheme, themeVars } from './theme'
-import type { DeskCharacterProps } from './types'
+import { DEFAULT_PERSONA } from './defaultPersona'
+import type { PortfolioCharacterProps } from './types'
 
 const CHAR_WIDTH = 440
 
 const DOCK_LEAN = -7
 
-export const DeskCharacter = ({
-  persona,
+export const PortfolioCharacter = ({
+  persona = DEFAULT_PERSONA,
   theme = 'light',
   dockMotion = 'Cascada',
   ambient = true,
@@ -43,9 +44,11 @@ export const DeskCharacter = ({
   gazeSelector,
   dockAt = 0.92,
   undockAt = 0.55,
+  characterRenderTime,
   className,
   children,
-}: DeskCharacterProps) => {
+  ...appearanceProps
+}: PortfolioCharacterProps) => {
   const heroRef = useRef<HTMLElement & HTMLDivElement>(null)
   const charBox = useRef<HTMLDivElement>(null)
   const cropRef = useRef<HTMLDivElement>(null)
@@ -98,7 +101,21 @@ export const DeskCharacter = ({
     onBeforeFlip,
   })
 
-  const appearance = useMemo(() => resolveAppearance(persona.appearance), [persona.appearance])
+  const appearance = useMemo(
+    () => resolveAppearance(persona.appearance, appearanceProps),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      persona.appearance,
+      appearanceProps.preset,
+      appearanceProps.skinTone,
+      appearanceProps.hair,
+      appearanceProps.hairColor,
+      appearanceProps.eyes,
+      appearanceProps.mouth,
+      appearanceProps.beard,
+      appearanceProps.glasses,
+    ],
+  )
 
   const gazeRefs = useMemo(() => ({ svg: svgRef, face: faceRef, leftPupil, rightPupil }), [])
   const gazeAnchors = useMemo(
@@ -264,6 +281,7 @@ export const DeskCharacter = ({
             }}
             appearance={appearance}
             blink={blink}
+            characterRenderTime={characterRenderTime}
           />
         </div>
       </div>
@@ -326,3 +344,6 @@ export const DeskCharacter = ({
     </div>
   )
 }
+
+/** @deprecated Renamed to `PortfolioCharacter`. */
+export const DeskCharacter = PortfolioCharacter

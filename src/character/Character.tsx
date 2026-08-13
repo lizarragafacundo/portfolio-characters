@@ -24,6 +24,15 @@ export interface CharacterProps {
   characterRenderTime?: number
   baseDelay?: number
   animate?: boolean
+  viewBox?: string
+  svgStyle?: CSSProperties
+}
+
+const DOCKED_IN_SCENE: CSSProperties = {
+  position: 'absolute',
+  top: '-1.8%',
+  left: '6%',
+  width: '100%',
 }
 
 const BLINK_STYLE: CSSProperties = {
@@ -53,6 +62,8 @@ export const Character = ({
   characterRenderTime,
   baseDelay = 0,
   animate = true,
+  viewBox = CHARACTER_VIEW_BOX,
+  svgStyle = DOCKED_IN_SCENE,
 }: CharacterProps) => {
   const { layers, expressions } = useMemo(
     () =>
@@ -69,11 +80,7 @@ export const Character = ({
   const blinkProps = blink ? { 'data-amb': '', style: BLINK_STYLE } : {}
 
   return (
-    <svg
-      ref={refs.svg}
-      viewBox={CHARACTER_VIEW_BOX}
-      style={{ position: 'absolute', top: '-1.8%', left: '6%', width: '100%' }}
-    >
+    <svg ref={refs.svg} viewBox={viewBox} style={svgStyle}>
       <defs>
         <clipPath id={HEAD_ROOM_CLIP_ID}>
           <rect x="-60" y="-60" width="560" height="617" />

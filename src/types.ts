@@ -38,8 +38,13 @@ export interface Motion {
   from: (dx: number, dy: number) => string
 }
 
-export interface DeskCharacterProps {
-  persona: Persona
+/**
+ * Part props sit at the top level, so changing one thing is one line.
+ * They override whatever `persona.appearance` asked for.
+ */
+export interface PortfolioCharacterProps extends Appearance {
+  /** @default the packaged default persona */
+  persona?: Persona
   theme?: ThemeName | Theme
   dockMotion?: MotionName
   ambient?: boolean
@@ -50,9 +55,14 @@ export interface DeskCharacterProps {
   gazeSelector?: string
   dockAt?: number
   undockAt?: number
+  /** Seconds the character takes to draw itself in. @default 1.35 */
+  characterRenderTime?: number
   className?: string
   children?: React.ReactNode
 }
+
+/** @deprecated Renamed to `PortfolioCharacterProps`. */
+export type DeskCharacterProps = PortfolioCharacterProps
 
 export const LINE_BUDGET = 6
 

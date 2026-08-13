@@ -70,6 +70,8 @@ export const VARIANTS = {
   scene: crop({ x: 0, y: 0, w: 900, h: 600 }),
 
   desk: crop({ x: 36, y: 44, w: 858, h: 476, laptopScale: 1.12 }),
+
+  deskStrip: crop({ x: 30, y: 296, w: 840, h: 210 }),
 } as const satisfies Record<string, Geometry>
 
 export type VariantName = keyof typeof VARIANTS

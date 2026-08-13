@@ -1,10 +1,10 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { DeskCharacter } from '../src/DeskCharacter'
+import { PortfolioCharacter } from '../src/PortfolioCharacter'
 import { facundo } from '../personas'
 
 describe('server rendering', () => {
-  const html = renderToStaticMarkup(<DeskCharacter persona={facundo} theme="matrix" />)
+  const html = renderToStaticMarkup(<PortfolioCharacter persona={facundo} theme="matrix" />)
 
   it('draws the entire scene without a browser', () => {
     expect(html).toContain('data-fl="face"')
