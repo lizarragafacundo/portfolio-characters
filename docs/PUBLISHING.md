@@ -58,7 +58,7 @@ There is no manual release step. The flow is:
    ```
 
    Pick patch/minor/major (the package is `0.x`, so a minor bump may break —
-   see Versioning below) and write one or two sentences a *consumer* would
+   see Versioning below) and write one or two sentences a _consumer_ would
    want to read. This writes a file under `.changeset/`; commit it with your
    change.
 
