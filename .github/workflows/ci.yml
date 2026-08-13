@@ -29,16 +29,16 @@ jobs:
 
       - run: pnpm run typecheck
       - run: pnpm run lint
+      - run: pnpm run format:check
       - run: pnpm run test
       - run: pnpm run validate:persona
       - run: pnpm run build
 
-      # The package is consumed as a git dependency, so `dist/` correctness is the
-      # contract. If any of these are missing, every consumer breaks on install
-      # with a module-resolution error that gives no hint about the real cause.
+      # Every path in the exports map. If one is missing, the consumer gets a
+      # module-resolution error that gives no hint about the real cause.
       - name: Assert the published surface exists
         run: |
-          for f in dist/index.js dist/index.d.ts dist/styles.css dist/personas/index.js dist/personas/index.d.ts; do
+          for f in             dist/index.js dist/index.d.ts             dist/styles.css dist/builder.css             dist/builder/index.js dist/builder/index.d.ts             dist/personas/index.js dist/personas/index.d.ts; do
             test -f "$f" || { echo "::error::$f missing from the build output"; exit 1; }
           done
 

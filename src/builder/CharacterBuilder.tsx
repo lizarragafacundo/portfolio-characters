@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useReducer, type CSSProperties } from 'react'
 import { CharacterPortrait } from '../character/CharacterPortrait'
-import { MOTIONS } from '../motions'
+import { MOTIONS } from '../dockMotions'
 import type { PartCategory } from '../parts/catalogues'
 import { hairColors, skinTones } from '../parts/registry'
 import { PortfolioCharacter } from '../PortfolioCharacter'

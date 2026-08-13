@@ -15,13 +15,13 @@ import { VARIANTS } from './geometry'
 import { PART_REGISTRY } from './parts/registry'
 import { appearanceKeyOf, resolveAppearance } from './parts/resolveAppearance'
 import { useAppearanceReplay } from './hooks/useAppearanceReplay'
-import { useAmbient, useBake } from './hooks/useBake'
+import { useAmbient, useBakeIntro } from './hooks/useBakeIntro'
 import { useDockOnScroll } from './hooks/useDockOnScroll'
 import { useGaze } from './hooks/useGaze'
 import { usePointerLook } from './hooks/usePointerLook'
-import { useMotionCapability } from './hooks/useReducedMotion'
+import { useMotionCapability } from './hooks/useMotionCapability'
 import { useSectionGaze } from './hooks/useSectionGaze'
-import { resolveMotion } from './motions'
+import { resolveMotion } from './dockMotions'
 import { BackScene } from './scene/BackScene'
 import { FrontScene } from './scene/FrontScene'
 import { resolveSceneObjects } from './scene/deskObjectPlacement'
@@ -73,7 +73,7 @@ export const PortfolioCharacter = ({
   const resolved = resolveTheme(theme)
   const geometry = VARIANTS[variant]
 
-  const { bakeNow, hasBakedIntro } = useBake([svgRef, sceneBack, sceneFront], {
+  const { bakeNow, hasBakedIntro } = useBakeIntro([svgRef, sceneBack, sceneFront], {
     immediate: reduced,
     characterRenderTime,
   })

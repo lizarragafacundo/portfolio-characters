@@ -5,7 +5,7 @@ export { PORTRAIT_CROPS, type PortraitCropName } from './character/portraitCrops
 export { DEFAULT_PERSONA } from './defaultPersona'
 
 export { THEMES, resolveTheme, themeVars } from './theme'
-export { MOTIONS, resolveMotion } from './motions'
+export { MOTIONS, resolveMotion } from './dockMotions'
 export { RENDER_MOTIONS, resolveRenderMotion, type RenderMotion } from './renderMotions'
 export {
   DEFAULT_SCENE_OBJECTS,

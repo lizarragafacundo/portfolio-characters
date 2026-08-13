@@ -16,7 +16,7 @@ export interface BakeController {
   hasBakedIntro: () => boolean
 }
 
-export const useBake = (
+export const useBakeIntro = (
   svgs: SvgRef[],
   { immediate, sceneRenderTime = 0.9, characterRenderTime = 1.35 }: BakeOptions,
 ): BakeController => {

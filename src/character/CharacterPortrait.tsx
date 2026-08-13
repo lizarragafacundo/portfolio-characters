@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, type CSSProperties } from 'react'
 import { useGaze } from '../hooks/useGaze'
-import { useMotionCapability } from '../hooks/useReducedMotion'
+import { useMotionCapability } from '../hooks/useMotionCapability'
 import { usePointerLook } from '../hooks/usePointerLook'
 import { PART_REGISTRY } from '../parts/registry'
 import { resolveAppearance, type Appearance } from '../parts/resolveAppearance'
