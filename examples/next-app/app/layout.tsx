@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import '@lizdevs/desk-character/styles.css'
+import '@facundolizarraga/portfolio-characters/styles.css'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'desk-character — example',
+  title: 'portfolio-characters — example',
   description: 'Every persona, theme and dock motion the component ships with.',
 }
 

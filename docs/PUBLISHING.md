@@ -25,7 +25,7 @@ package name into every generated snippet.
 ### 2. The GitHub repository
 
 ```sh
-gh repo create facundo-lizdevs/portfolio-characters --public --source . --push
+gh repo create lizarragafacundo/portfolio-characters --public --source . --push
 ```
 
 `repository.url` in `package.json` must match it exactly. npm provenance verifies

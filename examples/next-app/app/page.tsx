@@ -8,7 +8,7 @@ import {
   type MotionName,
   type ThemeName,
 } from '@facundolizarraga/portfolio-characters'
-import { exampleDesigner, facundo } from '@lizdevs/desk-character/personas'
+import { exampleDesigner, facundo } from '@facundolizarraga/portfolio-characters/personas'
 
 const PERSONAS = { facundo, exampleDesigner }
 type PersonaName = keyof typeof PERSONAS

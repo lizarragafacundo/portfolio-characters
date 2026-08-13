@@ -6,11 +6,11 @@
   "author": "Facundo Lizarraga <faculizarraga0@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/facundo-lizdevs/portfolio-characters.git"
+    "url": "git+https://github.com/lizarragafacundo/portfolio-characters.git"
   },
-  "homepage": "https://github.com/facundo-lizdevs/portfolio-characters#readme",
+  "homepage": "https://github.com/lizarragafacundo/portfolio-characters#readme",
   "bugs": {
-    "url": "https://github.com/facundo-lizdevs/portfolio-characters/issues"
+    "url": "https://github.com/lizarragafacundo/portfolio-characters/issues"
   },
   "keywords": [
     "react",

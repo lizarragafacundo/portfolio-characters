@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/facundo-lizdevs/desk-character/persona.schema.json",
+  "$id": "https://github.com/lizarragafacundo/portfolio-characters/persona.schema.json",
   "title": "Persona",
   "description": "Everything that makes the desk character a specific person. This file is the contract: hand it to an LLM together with your CV and it has enough to write a valid persona without seeing the source.",
   "type": "object",

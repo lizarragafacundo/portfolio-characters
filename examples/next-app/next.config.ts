@@ -7,7 +7,7 @@ import type { NextConfig } from 'next'
  * against uncommitted source, which is the only way it catches anything.
  */
 const config: NextConfig = {
-  transpilePackages: ['@lizdevs/desk-character'],
+  transpilePackages: ['@facundolizarraga/portfolio-characters'],
 }
 
 export default config

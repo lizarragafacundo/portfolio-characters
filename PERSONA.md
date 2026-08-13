@@ -80,7 +80,7 @@ your projects you would actually enjoy talking about.
 Then transcribe it:
 
 ```ts
-import type { Persona } from '@lizdevs/desk-character'
+import type { Persona } from '@facundolizarraga/portfolio-characters'
 
 export const me: Persona = {
   name: '',
