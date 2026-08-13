@@ -204,7 +204,7 @@ separate, server-safe entry point.
 SemVer, but the package is `0.x` — **a minor bump may break**, particularly the
 builder API. Pin exactly if that matters to you.
 
-Releases publish from a tag with npm provenance; see
+Releases are automated with Changesets and publish with npm provenance; see
 [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
 
 ## Migrating

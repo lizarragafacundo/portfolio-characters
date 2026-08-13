@@ -75,6 +75,7 @@
     "test:watch": "vitest",
     "validate:persona": "tsx scripts/validate-persona.ts",
     "capture:reference": "tsx scripts/captureReferenceMarkup.tsx",
+    "changeset": "changeset",
     "import:parts": "tsx scripts/importPartsFromDesign.ts && prettier --write --log-level warn src/parts/registry",
     "prepack": "tsup",
     "prepare": "tsup"
@@ -84,6 +85,8 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.0",
     "@eslint/js": "^9.17.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "6.9.1",

@@ -2,18 +2,23 @@ name: Release
 
 on:
   push:
-    tags: ['v*']
+    branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
+  pull-requests: write
   # Required for npm provenance: the attestation is signed with a short-lived
   # OIDC token from this workflow, which is what proves the tarball was built
   # from this commit in this repository.
   id-token: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,8 +35,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # The same gate CI runs. A tag must never publish something that would
-      # have failed on main.
+      # The same gate CI runs. Nothing publishes unless main is green.
       - run: pnpm run typecheck
       - run: pnpm run lint
       - run: pnpm run format:check
@@ -39,19 +43,26 @@ jobs:
       - run: pnpm run validate:persona
       - run: pnpm run build
 
-      - name: Assert the tag matches the package version
-        run: |
-          tagged="${GITHUB_REF_NAME#v}"
-          packaged=$(node -p "require('./package.json').version")
-          test "$tagged" = "$packaged" \
-            || { echo "::error::tag $GITHUB_REF_NAME does not match package version $packaged"; exit 1; }
-
-      - name: Publish to npm
-        run: pnpm publish --access public --provenance --no-git-checks
+      # If there are pending changesets, this opens/updates a "Version
+      # Packages" PR (package.json bump + CHANGELOG.md) and does not publish.
+      # If main already has an un-published version bump — i.e. that PR was
+      # just merged — this publishes instead and does not open a PR.
+      - name: Create Release PR or publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm publish --access public --provenance --no-git-checks
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create the GitHub release
-        run: gh release create "$GITHUB_REF_NAME" --generate-notes --verify-tag
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          pkgs='${{ steps.changesets.outputs.publishedPackages }}'
+          version=$(echo "$pkgs" | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8'))[0].version")
+          gh release create "v$version" --generate-notes --target main
         env:
           GH_TOKEN: ${{ github.token }}
