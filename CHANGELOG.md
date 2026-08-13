@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- [`d06bc2c`](https://github.com/lizarragafacundo/portfolio-characters/commit/d06bc2c83bcdea5d169287ae14a1a822aef91c30) Thanks [@lizarragafacundo](https://github.com/lizarragafacundo)! - Shorten the README and add screenshots of the character and the builder.
+
 ## 0.1.1
 
 ### Patch Changes

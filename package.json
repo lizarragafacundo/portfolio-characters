@@ -1,6 +1,6 @@
 {
   "name": "@facundolizarraga/portfolio-characters",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A hand-drawn SVG desk character for developer portfolios: fully composable parts, a scripted terminal on its laptop, and a scroll-dock that follows the reader.",
   "license": "MIT",
   "author": "Facundo Lizarraga <faculizarraga0@gmail.com>",
