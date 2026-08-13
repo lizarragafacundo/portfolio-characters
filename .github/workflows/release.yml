@@ -35,7 +35,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # The same gate CI runs. Nothing publishes unless main is green.
       - run: pnpm run typecheck
       - run: pnpm run lint
       - run: pnpm run format:check
@@ -43,10 +42,6 @@ jobs:
       - run: pnpm run validate:persona
       - run: pnpm run build
 
-      # If there are pending changesets, this opens/updates a "Version
-      # Packages" PR (package.json bump + CHANGELOG.md) and does not publish.
-      # If main already has an un-published version bump — i.e. that PR was
-      # just merged — this publishes instead and does not open a PR.
       - name: Create Release PR or publish
         id: changesets
         uses: changesets/action@v1
