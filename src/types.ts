@@ -1,5 +1,6 @@
 import type { VariantName } from './geometry'
 import type { Appearance } from './parts/resolveAppearance'
+import type { SceneObjects } from './scene/deskObjectPlacement'
 
 export interface Theme {
   ink: string
@@ -30,6 +31,8 @@ export interface Persona {
 
 export type MotionName = 'Cascada' | 'Barrido' | 'Arco' | 'Giro' | 'Rebote' | 'Redibujado'
 
+export type RenderMotionName = 'sketch' | 'dissolve' | 'pop' | 'wipe' | 'unroll' | 'flip'
+
 export interface Motion {
   stagger: number
   dur: number
@@ -57,6 +60,10 @@ export interface PortfolioCharacterProps extends Appearance {
   undockAt?: number
   /** Seconds the character takes to draw itself in. @default 1.35 */
   characterRenderTime?: number
+  /** Which fixtures and desk objects the room shows. Merged over the defaults. */
+  objects?: SceneObjects
+  /** How the drawing rebuilds itself when a part changes. @default 'sketch' */
+  renderMotion?: RenderMotionName
   className?: string
   children?: React.ReactNode
 }

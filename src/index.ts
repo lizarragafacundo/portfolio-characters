@@ -6,6 +6,15 @@ export { DEFAULT_PERSONA } from './defaultPersona'
 
 export { THEMES, resolveTheme, themeVars } from './theme'
 export { MOTIONS, resolveMotion } from './motions'
+export { RENDER_MOTIONS, resolveRenderMotion, type RenderMotion } from './renderMotions'
+export {
+  DEFAULT_SCENE_OBJECTS,
+  DESK_OBJECT_SCENE,
+  resolveSceneObjects,
+  type SceneFixtureId,
+  type SceneObjectId,
+  type SceneObjects,
+} from './scene/deskObjectPlacement'
 export { VARIANTS, type Geometry, type VariantName } from './geometry'
 
 export {
@@ -69,6 +78,7 @@ export {
   type MotionName,
   type Persona,
   type PortfolioCharacterProps,
+  type RenderMotionName,
   type Theme,
   type ThemeName,
 } from './types'

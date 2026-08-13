@@ -10,9 +10,11 @@ import {
 } from 'react'
 import { Character } from './character/Character'
 import { eyeAnchorsFor } from './character/eyeAnchors'
+import { resetLayerGroups } from './character/resetLayerGroups'
 import { VARIANTS } from './geometry'
 import { PART_REGISTRY } from './parts/registry'
-import { resolveAppearance } from './parts/resolveAppearance'
+import { appearanceKeyOf, resolveAppearance } from './parts/resolveAppearance'
+import { useAppearanceReplay } from './hooks/useAppearanceReplay'
 import { useAmbient, useBake } from './hooks/useBake'
 import { useDockOnScroll } from './hooks/useDockOnScroll'
 import { useGaze } from './hooks/useGaze'
@@ -22,6 +24,7 @@ import { useSectionGaze } from './hooks/useSectionGaze'
 import { resolveMotion } from './motions'
 import { BackScene } from './scene/BackScene'
 import { FrontScene } from './scene/FrontScene'
+import { resolveSceneObjects } from './scene/deskObjectPlacement'
 import { Terminal } from './terminal/Terminal'
 import { useTerminalScript } from './terminal/useTerminalScript'
 import { resolveTheme, themeVars } from './theme'
@@ -45,6 +48,8 @@ export const PortfolioCharacter = ({
   dockAt = 0.92,
   undockAt = 0.55,
   characterRenderTime,
+  objects,
+  renderMotion,
   className,
   children,
   ...appearanceProps
@@ -68,7 +73,10 @@ export const PortfolioCharacter = ({
   const resolved = resolveTheme(theme)
   const geometry = VARIANTS[variant]
 
-  const bake = useBake([svgRef, sceneBack, sceneFront], { immediate: reduced })
+  const { bakeNow, hasBakedIntro } = useBake([svgRef, sceneBack, sceneFront], {
+    immediate: reduced,
+    characterRenderTime,
+  })
   useAmbient([svgRef, sceneBack, sceneFront, termRef], ambient && !lowEnd)
 
   const step = useTerminalScript(persona.script, {
@@ -117,12 +125,24 @@ export const PortfolioCharacter = ({
     ],
   )
 
+  const sceneObjects = useMemo(() => resolveSceneObjects(objects), [objects])
+  const dockTransitionLock = useRef(false)
+
   const gazeRefs = useMemo(() => ({ svg: svgRef, face: faceRef, leftPupil, rightPupil }), [])
   const gazeAnchors = useMemo(
     () => eyeAnchorsFor(PART_REGISTRY.eyeStyles[appearance.eyes]),
     [appearance.eyes],
   )
   const gaze = useGaze(gazeRefs, gazeAnchors)
+
+  useAppearanceReplay(svgRef, {
+    motion: renderMotion,
+    appearanceKey: appearanceKeyOf(appearance),
+    enabled: !reduced,
+    lowEnd,
+    hasBakedIntro,
+    dockTransitionLock,
+  })
 
   usePointerLook(gaze, { enabled: true, moveFace: !reduced, docked, leanBase, box: charBox })
   useSectionGaze(gaze, { selector: gazeSelector, enabled: !reduced })
@@ -163,7 +183,7 @@ export const PortfolioCharacter = ({
     box.style.transition = 'none'
     box.style.transform = 'none'
 
-    bake()
+    bakeNow()
 
     const before = beforeRect.current
     const after = crop.getBoundingClientRect()
@@ -179,9 +199,11 @@ export const PortfolioCharacter = ({
     const dy = (before.top - after.top) * k
 
     const cfg = resolveMotion(dockMotion)
-    const groups = Array.from(svg.querySelectorAll<SVGGElement>('[data-fl]'))
+    const groups = resetLayerGroups(svg)
     const stagger = lowEnd ? Math.min(cfg.stagger, 18) : cfg.stagger
     const dur = reduced ? 1 : cfg.dur
+
+    dockTransitionLock.current = true
 
     for (const g of groups) {
       g.style.transition = 'none'
@@ -230,11 +252,20 @@ export const PortfolioCharacter = ({
     setExpression(docked)
     setLean(docked ? DOCK_LEAN : 0)
 
+    const unlock = window.setTimeout(
+      () => {
+        dockTransitionLock.current = false
+      },
+      dur + stagger * groups.length,
+    )
+
     return () => {
       cancelAnimationFrame(raf)
       clearTimeout(fallback)
+      clearTimeout(unlock)
+      dockTransitionLock.current = false
     }
-  }, [docked, dockMotion, lowEnd, reduced, bake, first, setExpression, setLean])
+  }, [docked, dockMotion, lowEnd, reduced, bakeNow, first, setExpression, setLean])
 
   const charBoxStyle: CSSProperties = docked
     ? {
@@ -264,7 +295,7 @@ export const PortfolioCharacter = ({
 
   const stage = (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <BackScene ref={sceneBack} viewBox={geometry.viewBox} />
+      <BackScene ref={sceneBack} viewBox={geometry.viewBox} objects={sceneObjects} />
 
       <div ref={charBox} style={charBoxStyle}>
         <div ref={cropRef} style={cropStyle}>
@@ -286,7 +317,12 @@ export const PortfolioCharacter = ({
         </div>
       </div>
 
-      <FrontScene ref={sceneFront} viewBox={geometry.viewBox} laptop={geometry.laptop} />
+      <FrontScene
+        ref={sceneFront}
+        viewBox={geometry.viewBox}
+        laptop={geometry.laptop}
+        objects={sceneObjects}
+      />
 
       <Terminal
         ref={termRef}
