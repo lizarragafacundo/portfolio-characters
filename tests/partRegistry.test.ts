@@ -47,7 +47,7 @@ describe('part registry', () => {
     expect(Object.keys(PART_REGISTRY.skinTones)).toHaveLength(11)
     expect(Object.keys(PART_REGISTRY.hairColors)).toHaveLength(11)
     expect(Object.keys(PART_REGISTRY.hairStyles)).toHaveLength(13)
-    expect(Object.keys(PART_REGISTRY.eyeStyles)).toHaveLength(11)
+    expect(Object.keys(PART_REGISTRY.eyeStyles)).toHaveLength(12)
     expect(Object.keys(PART_REGISTRY.mouthStyles)).toHaveLength(6)
     expect(Object.keys(PART_REGISTRY.beardStyles)).toHaveLength(5)
     expect(Object.keys(PART_REGISTRY.glassesStyles)).toHaveLength(6)
@@ -56,7 +56,7 @@ describe('part registry', () => {
   })
 
   it('holds the full imported drawing', () => {
-    expect(allPrimitives()).toHaveLength(158)
+    expect(allPrimitives()).toHaveLength(159)
   })
 
   it('gives every primitive a non-empty path', () => {
@@ -152,6 +152,12 @@ describe('part registry', () => {
       expect(style.centreY, id).toBeGreaterThan(200)
       expect(style.centreY, id).toBeLessThan(220)
     })
+  })
+
+  it('draws an open eye only where a ring radius is authored', () => {
+    expect(PART_REGISTRY.eyeStyles.ringed.ringRadius).toBe(7)
+    expect(PART_REGISTRY.eyeStyles.ringed.pupilRadius).toBe(2.6)
+    expect(PART_REGISTRY.eyeStyles.round.ringRadius).toBeUndefined()
   })
 
   it('keeps the empty parts empty', () => {

@@ -8,7 +8,7 @@ describe('server rendering', () => {
 
   it('draws the entire scene without a browser', () => {
     expect(html).toContain('data-fl="face"')
-    expect(html).toContain('data-fl="hair"')
+    expect(html).toContain('data-fl="hairFront"')
     expect(html.match(/<path/g)?.length ?? 0).toBeGreaterThan(60)
   })
 

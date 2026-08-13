@@ -1,4 +1,5 @@
 import type { VariantName } from './geometry'
+import type { Appearance } from './parts/resolveAppearance'
 
 export interface Theme {
   ink: string
@@ -18,13 +19,13 @@ export interface Frame {
   hold?: number
 }
 
+/** Who the character is and what it says. How it looks is `appearance`. */
 export interface Persona {
   name: string
   role: string
   location: string
   script: Frame[]
-  glasses?: boolean
-  hair?: 'short' | 'long'
+  appearance?: Appearance
 }
 
 export type MotionName = 'Cascada' | 'Barrido' | 'Arco' | 'Giro' | 'Rebote' | 'Redibujado'

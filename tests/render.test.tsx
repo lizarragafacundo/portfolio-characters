@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { DeskCharacter } from '../src/DeskCharacter'
+import { CHARACTER_LAYERS } from '../src/character/characterLayers'
 import { exampleDesigner, facundo } from '../personas'
+
+const withoutGlasses = {
+  ...facundo,
+  appearance: { ...facundo.appearance, glasses: 'none' as const },
+}
 
 describe('<DeskCharacter />', () => {
   it('renders without a browser, so it is safe to server-render', () => {
@@ -18,28 +24,54 @@ describe('<DeskCharacter />', () => {
     const layers = [...container.querySelectorAll('[data-fl]')].map((el) =>
       el.getAttribute('data-fl'),
     )
-    expect(layers).toEqual([
-      'hairback',
+    expect(layers).toEqual([...CHARACTER_LAYERS])
+  })
+
+  it('pins the flip layer order, so reordering has to be deliberate', () => {
+    expect([...CHARACTER_LAYERS]).toEqual([
+      'hairBack',
       'neck',
-      'teefill',
-      'tee',
+      'shirtFill',
+      'shirtOutline',
       'face',
+      'beard',
       'ears',
       'nose',
       'mouth',
-      'lids',
-      'eyeL',
-      'eyeR',
+      'eyeDecor',
+      'eyeLeft',
+      'eyeRight',
       'glasses',
       'brows',
-      'hair',
+      'hairFront',
     ])
+  })
+
+  it('renders every layer even when the character has no such part', () => {
+    const { container } = render(<DeskCharacter persona={withoutGlasses} />)
+    const beard = container.querySelector('[data-fl="beard"]')
+    const glasses = container.querySelector('[data-fl="glasses"]')
+
+    expect(beard).not.toBeNull()
+    expect(beard?.children).toHaveLength(0)
+    expect(glasses).not.toBeNull()
+    expect(glasses?.children).toHaveLength(0)
+  })
+
+  it('names every stroke so the drawing can be read in the DOM', () => {
+    const { container } = render(<DeskCharacter persona={facundo} />)
+    const named = [...container.querySelectorAll('[data-part]')].map((el) =>
+      el.getAttribute('data-part'),
+    )
+    expect(named).toContain('skullOutline')
+    expect(named).toContain('noseBridge')
+    expect(named).toContain('pupilLeft')
   })
 
   it('marks the drawn and filled elements bake() has to freeze', () => {
     const { container } = render(<DeskCharacter persona={facundo} />)
     expect(container.querySelectorAll('[pathLength]').length).toBeGreaterThan(50)
-    expect(container.querySelectorAll('[data-fillel]').length).toBeGreaterThanOrEqual(20)
+    expect(container.querySelectorAll('[data-fillel]').length).toBeGreaterThanOrEqual(18)
   })
 
   it('marks the looping decorations so they can be stripped on slow devices', () => {
@@ -54,12 +86,28 @@ describe('<DeskCharacter />', () => {
     expect(container.innerHTML).toContain('var(--dc-ink)')
   })
 
-  it('drops the glasses when the persona says so', () => {
+  it('draws the glasses the appearance asks for, and none when it asks for none', () => {
     const { container: withGlasses } = render(<DeskCharacter persona={facundo} />)
-    const { container: without } = render(<DeskCharacter persona={exampleDesigner} />)
+    const { container: without } = render(<DeskCharacter persona={withoutGlasses} />)
 
-    expect(withGlasses.querySelector('[data-fl="glasses"]')).not.toBeNull()
-    expect(without.querySelector('[data-fl="glasses"]')).toBeNull()
+    expect(withGlasses.querySelectorAll('[data-fl="glasses"] [data-part]').length).toBeGreaterThan(
+      0,
+    )
+    expect(without.querySelectorAll('[data-fl="glasses"] [data-part]')).toHaveLength(0)
+  })
+
+  it('redraws the character when the appearance changes', () => {
+    const { container: wavy } = render(<DeskCharacter persona={facundo} />)
+    const afro = { ...facundo, appearance: { ...facundo.appearance, hair: 'afro' as const } }
+    const { container: withAfro } = render(<DeskCharacter persona={afro} />)
+
+    const namesIn = (root: HTMLElement) =>
+      [...root.querySelectorAll('[data-fl="hairFront"] [data-part]')].map((el) =>
+        el.getAttribute('data-part'),
+      )
+
+    expect(namesIn(wavy)[0]).toBe('wavyOverFill')
+    expect(namesIn(withAfro)[0]).toBe('afroOverFill')
   })
 
   it('renders the persona’s own commands, not the default one’s', async () => {
@@ -74,23 +122,30 @@ describe('<DeskCharacter />', () => {
 
     const eyes = [...on.querySelectorAll('[data-fl^="eye"][style*="chblink"]')]
     expect(eyes).toHaveLength(2)
-    expect(eyes.map((eye) => eye.getAttribute('data-fl'))).toEqual(['eyeL', 'eyeR'])
+    expect(eyes.map((eye) => eye.getAttribute('data-fl'))).toEqual(['eyeLeft', 'eyeRight'])
     for (const eye of eyes) {
       expect(eye).toHaveAttribute('data-amb')
-      expect(eye.querySelectorAll('circle')).toHaveLength(2)
+      expect(eye.querySelectorAll('[data-part]')).toHaveLength(2)
     }
 
     expect(off.querySelectorAll('[style*="chblink"]')).toHaveLength(0)
   })
 
-  it('blinks the circles inside each gaze-controlled eye group', () => {
+  it('blinks the iris and pupil inside each gaze-controlled eye group', () => {
     const { container } = render(<DeskCharacter persona={facundo} />)
 
-    for (const eye of ['eyeL', 'eyeR']) {
+    for (const eye of ['eyeLeft', 'eyeRight']) {
       const group = container.querySelector(`[data-fl="${eye}"]`)
       expect((group as SVGGElement).style.animation).toContain('chblink')
-      expect(group?.querySelectorAll('circle')).toHaveLength(2)
+      expect(group?.querySelectorAll('[data-part]')).toHaveLength(2)
     }
+  })
+
+  it('keeps the eye decor outside the blinking groups so lids do not squash', () => {
+    const { container } = render(<DeskCharacter persona={facundo} />)
+    const decor = container.querySelector('[data-fl="eyeDecor"]')
+    expect(decor).not.toHaveAttribute('data-amb')
+    expect(decor?.querySelector('[data-part="upperLidShadow"]')).not.toBeNull()
   })
 
   it('crops tighter and stops docking in the desk variant', () => {

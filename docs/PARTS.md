@@ -6,19 +6,23 @@ this document is the field reference.
 
 ## Catalogue
 
-| Category        | Count | Ids                                                                                                |
-| --------------- | ----- | -------------------------------------------------------------------------------------------------- |
-| `skinTones`     | 11    | `paper` `celeste` `ivory` `sand` `golden` `olive` `amber` `bronze` `chestnut` `cocoa` `espresso`   |
-| `hairColors`    | 11    | `paper` `celeste` `black` `espresso` `brown` `chestnut` `auburn` `blonde` `gray` `white` `violet`  |
-| `hairStyles`    | 13    | `wavy` `fringe` `afro` `curly` `long` `bun` `buzz` `bald` `pixie` `sidepart` `cap` `beanie` `crop` |
-| `eyeStyles`     | 11    | `round` `almond` `wide` `sleepy` `happy` `narrow` `big` `lashes` `monolid` `brown` `spark`         |
-| `mouthStyles`   | 6     | `smile` `grin` `neutral` `soft` `smirk` `pout`                                                     |
-| `beardStyles`   | 5     | `none` `stubble` `goatee` `full` `mustache`                                                        |
-| `glassesStyles` | 6     | `none` `square` `round` `halfrim` `sun` `cateye`                                                   |
-| `deskObjects`   | 6     | `headphones` `gamepad` `cat` `books` `keyboard` `polaroids`                                        |
-| `presets`       | 14    | `preset-01` … `preset-10`, `facu-01` … `facu-04`                                                   |
+| Category        | Count | Ids                                                                                                 |
+| --------------- | ----- | --------------------------------------------------------------------------------------------------- |
+| `skinTones`     | 11    | `paper` `celeste` `ivory` `sand` `golden` `olive` `amber` `bronze` `chestnut` `cocoa` `espresso`    |
+| `hairColors`    | 11    | `paper` `celeste` `black` `espresso` `brown` `chestnut` `auburn` `blonde` `gray` `white` `violet`   |
+| `hairStyles`    | 13    | `wavy` `fringe` `afro` `curly` `long` `bun` `buzz` `bald` `pixie` `sidepart` `cap` `beanie` `crop`  |
+| `eyeStyles`     | 12    | `round` `almond` `wide` `sleepy` `happy` `narrow` `big` `lashes` `monolid` `brown` `spark` `ringed` |
+| `mouthStyles`   | 6     | `smile` `grin` `neutral` `soft` `smirk` `pout`                                                      |
+| `beardStyles`   | 5     | `none` `stubble` `goatee` `full` `mustache`                                                         |
+| `glassesStyles` | 6     | `none` `square` `round` `halfrim` `sun` `cateye`                                                    |
+| `deskObjects`   | 6     | `headphones` `gamepad` `cat` `books` `keyboard` `polaroids`                                         |
+| `presets`       | 14    | `preset-01` … `preset-10`, `facu-01` … `facu-04`                                                    |
 
-158 primitives in total.
+159 primitives in total.
+
+`ringed` is authored in this package rather than in the design project: it is the open eye the
+portfolio character has always had, an outlined iris with a pupil inside it. An eye style draws
+an open eye whenever it carries a `ringRadius`; otherwise the pupil is a solid dot.
 
 ## `Primitive`
 

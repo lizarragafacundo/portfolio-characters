@@ -1,12 +1,9 @@
 'use client'
 
 import { useMemo, useRef, type RefObject } from 'react'
+import { DEFAULT_EYE_ANCHORS, type EyeAnchors } from '../character/eyeAnchors'
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v))
-
-const EYE_L = { x: 175, y: 212 }
-const EYE_R = { x: 265, y: 212 }
-const FACE_CENTRE = { x: 220, y: 230 }
 
 export interface GazeRefs {
   svg: RefObject<SVGSVGElement | null>
@@ -21,7 +18,10 @@ export interface GazeController {
   held: () => boolean
 }
 
-export const useGaze = (refs: GazeRefs): GazeController => {
+export const useGaze = (
+  refs: GazeRefs,
+  anchors: EyeAnchors = DEFAULT_EYE_ANCHORS,
+): GazeController => {
   const heldUntil = useRef(0)
 
   return useMemo<GazeController>(() => {
@@ -50,13 +50,13 @@ export const useGaze = (refs: GazeRefs): GazeController => {
         pt.y = client.y
         const local = pt.matrixTransform(ctm.inverse())
 
-        aim(refs.leftPupil.current, EYE_L, local, ease)
-        aim(refs.rightPupil.current, EYE_R, local, ease)
+        aim(refs.leftPupil.current, anchors.left, local, ease)
+        aim(refs.rightPupil.current, anchors.right, local, ease)
 
         const face = refs.face.current
         if (face && moveFace) {
-          const fx = clamp((local.x - FACE_CENTRE.x) * 0.014, -4, 4)
-          const fy = clamp((local.y - FACE_CENTRE.y) * 0.014, -3, 3)
+          const fx = clamp((local.x - anchors.face.x) * 0.014, -4, 4)
+          const fy = clamp((local.y - anchors.face.y) * 0.014, -3, 3)
           face.style.transition = ease ? 'transform .7s cubic-bezier(.3,.9,.3,1)' : 'none'
           face.setAttribute('transform', `translate(${fx} ${fy})`)
         }
@@ -70,5 +70,5 @@ export const useGaze = (refs: GazeRefs): GazeController => {
         return Date.now() < heldUntil.current
       },
     }
-  }, [refs])
+  }, [refs, anchors])
 }

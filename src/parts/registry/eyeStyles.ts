@@ -155,4 +155,18 @@ export const eyeStyles: Record<EyesId, EyeStyle> = {
       },
     ],
   },
+  ringed: {
+    centreX: [175, 265],
+    centreY: 212,
+    pupilRadius: 2.6,
+    ringRadius: 7,
+    decor: [
+      {
+        name: 'upperLidShadow',
+        path: 'M151,182 H201 A8,8 0 0 1 201,198 H151 A8,8 0 0 1 151,182 Z M240,182 H290 A8,8 0 0 1 290,198 H240 A8,8 0 0 1 240,182 Z',
+        fill: 'skinShade',
+        drawDelay: 1.68,
+      },
+    ],
+  },
 }

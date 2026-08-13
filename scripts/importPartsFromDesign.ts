@@ -77,6 +77,31 @@ const BEARD_NAMES: Record<string, string[]> = {
   mustache: ['mustache', 'mustacheTips'],
 }
 
+/**
+ * Eye styles authored in this package rather than in the design project.
+ * `ringed` is the open eye the portfolio character has always had: an outlined
+ * iris with a pupil inside it, plus the shadow the upper lid casts.
+ */
+const AUTHORED_EYE_STYLES = {
+  ringed: {
+    ex: [175, 265] as [number, number],
+    ey: 212,
+    r: 2.6,
+    ring: 7,
+    decor: [
+      {
+        d: 'M151,182 H201 A8,8 0 0 1 201,198 H151 A8,8 0 0 1 151,182 Z M240,182 H290 A8,8 0 0 1 290,198 H240 A8,8 0 0 1 240,182 Z',
+        f: 'sh',
+        dl: 1.68,
+      },
+    ],
+  },
+}
+
+const EYE_DECOR_NAMES: Record<string, string[]> = {
+  ringed: ['upperLidShadow'],
+}
+
 const capitalise = (value: string) => value.charAt(0).toUpperCase() + value.slice(1)
 
 const camel = (value: string) =>
@@ -193,13 +218,14 @@ const importParts = () => {
   )
 
   const eyeStyles = Object.fromEntries(
-    Object.entries(DESIGN_PARTS.eyes).map(([id, style]) => [
+    Object.entries({ ...DESIGN_PARTS.eyes, ...AUTHORED_EYE_STYLES }).map(([id, style]) => [
       id,
       {
         centreX: [style.ex[0], style.ex[1]],
         centreY: style.ey,
         pupilRadius: style.r,
-        decor: convertList(style.decor, `${id} eye`),
+        ringRadius: 'ring' in style ? style.ring : undefined,
+        decor: convertList(style.decor, `${id} eye`, EYE_DECOR_NAMES[id]),
       },
     ]),
   )

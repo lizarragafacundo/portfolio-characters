@@ -4,8 +4,11 @@ export const facundo: Persona = {
   name: 'Facundo Lizarraga',
   role: 'Senior Full-Stack Engineer',
   location: 'Buenos Aires, Argentina',
-  glasses: true,
-  hair: 'short',
+  appearance: {
+    preset: 'facu-02',
+    hair: 'wavy',
+    eyes: 'ringed',
+  },
 
   script: [
     {

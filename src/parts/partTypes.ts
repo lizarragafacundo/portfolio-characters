@@ -51,6 +51,7 @@ export type EyesId =
   | 'monolid'
   | 'brown'
   | 'spark'
+  | 'ringed'
 
 export type MouthId = 'smile' | 'grin' | 'neutral' | 'soft' | 'smirk' | 'pout'
 
@@ -145,6 +146,8 @@ export interface EyeStyle {
   centreX: [left: number, right: number]
   centreY: number
   pupilRadius: number
+  /** Draws an open eye: an outlined iris around the pupil rather than a solid dot. */
+  ringRadius?: number
   decor: Primitive[]
 }
 

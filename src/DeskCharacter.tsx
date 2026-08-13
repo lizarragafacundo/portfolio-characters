@@ -9,7 +9,10 @@ import {
   type RefObject,
 } from 'react'
 import { Character } from './character/Character'
+import { eyeAnchorsFor } from './character/eyeAnchors'
 import { VARIANTS } from './geometry'
+import { PART_REGISTRY } from './parts/registry'
+import { resolveAppearance } from './parts/resolveAppearance'
 import { useAmbient, useBake } from './hooks/useBake'
 import { useDockOnScroll } from './hooks/useDockOnScroll'
 import { useGaze } from './hooks/useGaze'
@@ -95,8 +98,14 @@ export const DeskCharacter = ({
     onBeforeFlip,
   })
 
+  const appearance = useMemo(() => resolveAppearance(persona.appearance), [persona.appearance])
+
   const gazeRefs = useMemo(() => ({ svg: svgRef, face: faceRef, leftPupil, rightPupil }), [])
-  const gaze = useGaze(gazeRefs)
+  const gazeAnchors = useMemo(
+    () => eyeAnchorsFor(PART_REGISTRY.eyeStyles[appearance.eyes]),
+    [appearance.eyes],
+  )
+  const gaze = useGaze(gazeRefs, gazeAnchors)
 
   usePointerLook(gaze, { enabled: true, moveFace: !reduced, docked, leanBase, box: charBox })
   useSectionGaze(gaze, { selector: gazeSelector, enabled: !reduced })
@@ -253,8 +262,7 @@ export const DeskCharacter = ({
               mouthN,
               mouthO,
             }}
-            glasses={persona.glasses}
-            hair={persona.hair}
+            appearance={appearance}
             blink={blink}
           />
         </div>

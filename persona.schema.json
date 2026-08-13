@@ -22,15 +22,9 @@
       "minLength": 1,
       "description": "City and country, optionally with a work-mode note."
     },
-    "glasses": {
-      "type": "boolean",
-      "default": true,
-      "description": "Draw glasses on the character."
-    },
-    "hair": {
-      "enum": ["short", "long"],
-      "default": "short",
-      "description": "'long' adds hair falling past the shoulders."
+    "appearance": {
+      "$ref": "#/$defs/appearance",
+      "description": "How the character looks. Omit it and the default preset is used."
     },
     "script": {
       "type": "array",
@@ -41,6 +35,107 @@
     }
   },
   "$defs": {
+    "appearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A preset plus any overrides. Every field is optional; anything you leave out comes from the preset.",
+      "properties": {
+        "preset": {
+          "enum": [
+            "preset-01",
+            "preset-02",
+            "preset-03",
+            "preset-04",
+            "preset-05",
+            "preset-06",
+            "preset-07",
+            "preset-08",
+            "preset-09",
+            "preset-10",
+            "facu-01",
+            "facu-02",
+            "facu-03",
+            "facu-04"
+          ],
+          "default": "facu-02",
+          "description": "The character to start from. Every other field overrides it."
+        },
+        "skinTone": {
+          "enum": [
+            "paper",
+            "celeste",
+            "ivory",
+            "sand",
+            "golden",
+            "olive",
+            "amber",
+            "bronze",
+            "chestnut",
+            "cocoa",
+            "espresso"
+          ]
+        },
+        "hair": {
+          "enum": [
+            "wavy",
+            "fringe",
+            "afro",
+            "curly",
+            "long",
+            "bun",
+            "buzz",
+            "bald",
+            "pixie",
+            "sidepart",
+            "cap",
+            "beanie",
+            "crop"
+          ],
+          "description": "'cap' and 'beanie' are headwear rather than hair."
+        },
+        "hairColor": {
+          "enum": [
+            "paper",
+            "celeste",
+            "black",
+            "espresso",
+            "brown",
+            "chestnut",
+            "auburn",
+            "blonde",
+            "gray",
+            "white",
+            "violet"
+          ]
+        },
+        "eyes": {
+          "enum": [
+            "round",
+            "almond",
+            "wide",
+            "sleepy",
+            "happy",
+            "narrow",
+            "big",
+            "lashes",
+            "monolid",
+            "brown",
+            "spark",
+            "ringed"
+          ],
+          "description": "'ringed' and 'brown' draw an open eye with a visible iris; the rest draw a solid pupil."
+        },
+        "mouth": {
+          "enum": ["smile", "grin", "neutral", "soft", "smirk", "pout"]
+        },
+        "beard": {
+          "enum": ["none", "stubble", "goatee", "full", "mustache"]
+        },
+        "glasses": {
+          "enum": ["none", "square", "round", "halfrim", "sun", "cateye"]
+        }
+      }
+    },
     "frame": {
       "type": "object",
       "required": ["prompt", "lines"],

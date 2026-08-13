@@ -4,8 +4,10 @@ export const exampleDesigner: Persona = {
   name: 'Ada Marín',
   role: 'Product Designer',
   location: 'Lisbon, Portugal',
-  glasses: false,
-  hair: 'long',
+  appearance: {
+    preset: 'preset-06',
+    eyes: 'lashes',
+  },
 
   script: [
     {
