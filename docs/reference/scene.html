@@ -1,8 +1,8 @@
 <!doctype html>
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <title>reference · scene</title>
 <style>
-/*
+  /*
  * Every animation in the scene, in one file.
  *
  * These are keyframes only — no layout, no colour, no resets. The component sets
@@ -14,75 +14,75 @@
  * silently break anyone who copied an element out of it.
  */
 
-/* Line-drawing. Paired with stroke-dasharray:1 + pathLength="1", so one
+  /* Line-drawing. Paired with stroke-dasharray:1 + pathLength="1", so one
    keyframe works for every path regardless of its real length. */
-@keyframes chdraw {
-  to {
-    stroke-dashoffset: 0;
+  @keyframes chdraw {
+    to {
+      stroke-dashoffset: 0;
+    }
   }
-}
 
-/* Flat fills fading in behind the strokes that bound them. */
-@keyframes chfill {
-  to {
-    opacity: 1;
+  /* Flat fills fading in behind the strokes that bound them. */
+  @keyframes chfill {
+    to {
+      opacity: 1;
+    }
   }
-}
 
-@keyframes chcloudA {
-  from {
-    transform: translateX(-150px);
+  @keyframes chcloudA {
+    from {
+      transform: translateX(-150px);
+    }
+    to {
+      transform: translateX(230px);
+    }
   }
-  to {
-    transform: translateX(230px);
-  }
-}
 
-@keyframes chcloudB {
-  from {
-    transform: translateX(-190px);
+  @keyframes chcloudB {
+    from {
+      transform: translateX(-190px);
+    }
+    to {
+      transform: translateX(250px);
+    }
   }
-  to {
-    transform: translateX(250px);
-  }
-}
 
-@keyframes chsteam {
-  0% {
-    transform: translateY(6px) scaleX(0.9);
-    opacity: 0;
+  @keyframes chsteam {
+    0% {
+      transform: translateY(6px) scaleX(0.9);
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.75;
+    }
+    100% {
+      transform: translateY(-30px) scaleX(1.25);
+      opacity: 0;
+    }
   }
-  25% {
-    opacity: 0.75;
-  }
-  100% {
-    transform: translateY(-30px) scaleX(1.25);
-    opacity: 0;
-  }
-}
 
-@keyframes chsway {
-  0%,
-  100% {
-    transform: rotate(-1.8deg);
+  @keyframes chsway {
+    0%,
+    100% {
+      transform: rotate(-1.8deg);
+    }
+    50% {
+      transform: rotate(1.8deg);
+    }
   }
-  50% {
-    transform: rotate(1.8deg);
-  }
-}
 
-@keyframes chcaret {
-  0%,
-  49% {
-    opacity: 1;
+  @keyframes chcaret {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
   }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
 
-/*
+  /*
  * Blink.
  *
  * The lid is shut for ~4% of a 5.4s cycle — about 220ms, which is roughly a real
@@ -92,45 +92,1300 @@
  * Driven by scaleY from the top of the lens rather than by opacity, because an
  * eyelid that fades in over the eye looks like a ghost, not a lid.
  */
-@keyframes chblink {
-  0%,
-  92%,
-  100% {
-    transform: scaleY(1);
+  @keyframes chblink {
+    0%,
+    92%,
+    100% {
+      transform: scaleY(1);
+    }
+    94%,
+    96% {
+      transform: scaleY(0.08);
+    }
   }
-  94%,
-  96% {
-    transform: scaleY(0.08);
-  }
-}
 
-/*
+  /*
  * The component already bakes the drawing to its final state and strips ambient
  * loops in JS when it detects the preference. This block is the belt to that
  * braces: it covers the window between first paint and hydration, which on a
  * slow connection is the longest part of the page's life.
  */
-@media (prefers-reduced-motion: reduce) {
-  .dc-scene [style*='chdraw'] {
-    animation: none !important;
-    stroke-dashoffset: 0 !important;
+  @media (prefers-reduced-motion: reduce) {
+    .dc-scene [style*='chdraw'] {
+      animation: none !important;
+      stroke-dashoffset: 0 !important;
+    }
+
+    .dc-scene [style*='chfill'] {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+
+    .dc-scene [data-amb] {
+      animation: none !important;
+    }
   }
 
-  .dc-scene [style*='chfill'] {
-    animation: none !important;
-    opacity: 1 !important;
+  body {
+    margin: 0;
+    background: #e9e7df;
+    font-family: ui-monospace, monospace;
   }
-
-  .dc-scene [data-amb] {
-    animation: none !important;
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px;
   }
-}
-
-body { margin: 0; background: #e9e7df; font-family: ui-monospace, monospace; }
-main { max-width: 900px; margin: 0 auto; padding: 32px 16px; }
-h1 { font-size: 13px; letter-spacing: .18em; color: #244d73; text-transform: uppercase; }
+  h1 {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: #244d73;
+    text-transform: uppercase;
+  }
 </style>
 <main>
-<h1>scene · facundo</h1>
-<div class="dc-scene" aria-hidden="true" style="--dc-ink:#244d73;--dc-fill:#f3f1e9;--dc-shade:#d4d0c4;--dc-tint:#e2dfd4;--dc-screen:#244d73;--dc-bg:transparent;background:var(--dc-bg);overflow-x:clip;min-height:100vh"><section style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px"><div style="position:relative;width:100%;max-width:min(980px, 132vh);aspect-ratio:900/600"><div style="position:relative;width:100%;height:100%"><svg viewBox="0 0 900 600" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible"><defs><pattern id="chHatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="var(--dc-tint)" stroke-width="3"></line></pattern><clipPath id="chWin"><rect x="66" y="94" width="180" height="180" rx="8"></rect></clipPath></defs><rect x="0" y="215" width="900" height="215" fill="url(#chHatch)" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 0.02s forwards"></rect><g><rect x="63" y="91" width="186" height="186" rx="10" fill="var(--dc-fill)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 0.2s forwards"></rect><g clip-path="url(#chWin)"><g data-amb="" style="animation:chcloudA 34s linear infinite"><path d="M96,138 C88,138 84,130 90,124 C90,113 104,109 112,116 C122,110 136,116 137,127 C147,127 150,138 141,138 Z" fill="var(--dc-tint)" stroke="var(--dc-ink)" stroke-width="1.6" stroke-opacity="0.35" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 0.5s forwards"></path></g><g data-amb="" style="animation:chcloudB 52s linear infinite"><path d="M150,214 C142,214 139,206 145,201 C146,192 158,189 165,195 C174,190 185,196 186,205 C194,205 197,214 189,214 Z" fill="var(--dc-tint)" stroke="var(--dc-ink)" stroke-width="1.4" stroke-opacity="0.28" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 0.58s forwards"></path></g></g><g stroke="var(--dc-ink)" fill="none" stroke-linecap="round"><rect x="63" y="91" width="186" height="186" rx="10" stroke-width="3" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.55s cubic-bezier(.5,0,.3,1) 0.08s forwards"></rect><path d="M157,93 C158,146 156,212 157,275" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.3s forwards"></path><path d="M65,183 C120,181 194,185 247,183" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.34s forwards"></path><path d="M84,156 C100,136 118,120 136,110 M96,172 C118,144 146,120 172,108" stroke="var(--dc-shade)" stroke-width="3" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.42s forwards"></path><path d="M55,281 C120,277 196,283 257,279" stroke-width="3" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.4s forwards"></path></g></g><g><g data-fillel="" style="opacity:0;animation:chfill 0.4s ease 0.6s forwards"><path d="M266,158 L300,152 L306,186 L272,192 Z" fill="var(--dc-tint)"></path><path d="M312,150 L346,156 L340,190 L306,184 Z" fill="var(--dc-fill)"></path><path d="M280,204 L314,198 L320,232 L286,238 Z" fill="var(--dc-shade)" fill-opacity="0.6"></path></g><g stroke="var(--dc-ink)" fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M266,158 L300,152 L306,186 L272,192 Z M312,150 L346,156 L340,190 L306,184 Z M280,204 L314,198 L320,232 L286,238 Z" stroke-width="2.2" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.7s ease 0.5s forwards"></path><path d="M272,166 L296,162 M273,173 L290,170 M318,160 L338,164 M319,167 L332,169 M286,212 L310,208 M287,219 L304,216 M288,226 L298,224" stroke-width="1.8" opacity="0.55" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.7s forwards"></path></g></g><g><g data-fillel="" style="opacity:0;animation:chfill 0.45s ease 0.7s forwards"><path d="M624,154 L624,112 L640,112 L640,154 Z" fill="var(--dc-tint)"></path><path d="M643,154 L643,106 L655,106 L655,154 Z" fill="var(--dc-shade)"></path><path d="M658,154 L658,116 L676,116 L676,154 Z" fill="var(--dc-tint)"></path><path d="M679,154 L679,103 L691,103 L691,154 Z" fill="var(--dc-shade)"></path><path d="M694,154 L694,110 L712,110 L712,154 Z" fill="var(--dc-tint)"></path><path d="M716,154 L732,110 L744,115 L728,154 Z" fill="var(--dc-shade)"></path><path d="M750,154 L750,146 L796,146 L796,154 Z" fill="var(--dc-tint)"></path><path d="M754,146 L754,139 L800,139 L800,146 Z" fill="var(--dc-shade)"></path><path d="M752,139 L752,132 L794,132 L794,139 Z" fill="var(--dc-tint)"></path><path d="M624,222 L624,174 L642,174 L642,222 Z" fill="var(--dc-shade)"></path><path d="M645,222 L645,166 L657,166 L657,222 Z" fill="var(--dc-tint)"></path><path d="M660,222 L660,178 L672,178 L672,222 Z" fill="var(--dc-shade)"></path><path d="M675,222 L675,170 L695,170 L695,222 Z" fill="var(--dc-tint)"></path><path d="M698,222 L698,182 L710,182 L710,222 Z" fill="var(--dc-shade)"></path><path d="M714,222 L730,176 L744,181 L728,222 Z" fill="var(--dc-tint)"></path><path d="M748,222 L748,213 L800,213 L800,222 Z" fill="var(--dc-shade)"></path><path d="M752,213 L752,205 L804,205 L804,213 Z" fill="var(--dc-tint)"></path><path d="M816,222 L814,206 L842,206 L840,222 Z" fill="var(--dc-tint)"></path><path d="M810,152 C802,146 804,134 814,133 C816,124 832,124 833,134 C842,138 840,152 830,152 Z" fill="var(--dc-fill)"></path></g><g stroke="var(--dc-ink)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M614,94 L858,94 M616,94 L616,226 M856,94 L856,226 M612,226 L860,226 M613,154 L859,154" stroke-width="3.2" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s cubic-bezier(.5,0,.3,1) 0.12s forwards"></path><path d="M620,150 L852,150 M620,222 L852,222" stroke-width="1.8" opacity="0.28" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.34s forwards"></path><g stroke-width="2.3"><path d="M624,154 L624,112 L640,112 L640,154 M643,154 L643,106 L655,106 L655,154 M658,154 L658,116 L676,116 L676,154 M679,154 L679,103 L691,103 L691,154 M694,154 L694,110 L712,110 L712,154 M716,154 L732,110 L744,115 L728,154 Z" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.38s forwards"></path><path d="M750,154 L750,146 L796,146 L796,154 M754,146 L754,139 L800,139 L800,146 M752,139 L752,132 L794,132 L794,139" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.5s forwards"></path><path d="M624,222 L624,174 L642,174 L642,222 M645,222 L645,166 L657,166 L657,222 M660,222 L660,178 L672,178 L672,222 M675,222 L675,170 L695,170 L695,222 M698,222 L698,182 L710,182 L710,222 M714,222 L730,176 L744,181 L728,222 Z" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.48s forwards"></path><path d="M748,222 L748,213 L800,213 L800,222 M752,213 L752,205 L804,205 L804,213" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.58s forwards"></path></g><g stroke-width="1.7" opacity="0.5"><path d="M627,122 L637,122 M627,128 L637,128 M661,126 L673,126 M661,132 L673,132 M697,120 L709,120 M697,126 L709,126 M627,184 L639,184 M627,190 L639,190 M678,180 L692,180 M678,186 L692,186" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.68s forwards"></path></g><g stroke-width="2.2"><path d="M810,152 C802,146 804,134 814,133 C816,124 832,124 833,134 C842,138 840,152 830,152 Z" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.62s forwards"></path><path d="M833,131 C839,129 843,132 841,135 L847,136 L841,140" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.74s forwards"></path><path d="M826,131 C825,130 823,130 823,132 C823,134 826,134 826,132" stroke-width="1.8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.3s ease 0.8s forwards"></path></g><g stroke-width="2.2"><path d="M816,222 L814,206 L842,206 L840,222" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.66s forwards"></path><path d="M822,206 C817,197 821,187 828,190 M828,206 C828,193 835,187 839,192 M825,206 C824,199 820,195 816,197" stroke-width="2" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.76s forwards"></path></g></g></g></svg><div style="position:absolute;left:31.500%;top:11.000%;width:37.000%;pointer-events:none;transform-origin:50% 100%"><div style="position:relative;width:100%;aspect-ratio:440/620"><svg viewBox="0 0 440 620" style="position:absolute;top:-1.8%;left:6%;width:100%"><defs><clipPath id="chTorso"><rect x="-60" y="-60" width="560" height="617"></rect></clipPath><clipPath id="chTee"><path d="M52,585 C48,516 86,486 140,464 C168,451 184,443 190,431 C199,452 244,452 250,429 C258,441 288,451 320,465 C378,487 398,518 394,585 L394,600 L52,600 Z"></path></clipPath></defs><g clip-path="url(#chTorso)"><g transform="rotate(-2.2 220 300)"><g data-fl="hairback"><path d="M124,196 C112,162 116,124 134,100 C150,74 178,58 208,54 C214,42 224,46 230,38 C238,48 248,42 254,52 C266,44 276,50 278,60 C302,68 318,86 326,110 C334,132 332,160 328,186 C316,164 296,150 272,146 C242,140 210,142 184,150 C160,158 138,172 128,190 Z" fill="var(--dc-shade)" transform="translate(8 7)" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 1.5s forwards"></path></g><g data-fl="neck"><path d="M186,318 C188,352 185,396 189,439 L253,439 C256,396 252,352 254,316 Z" fill="var(--dc-fill)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.4s forwards"></path><path d="M204,340 C216,356 236,356 248,338 C244,364 208,364 204,340 Z" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.7s forwards"></path><g fill="none" stroke="var(--dc-ink)" stroke-width="3" stroke-linecap="round"><path d="M187,330 C189,358 186,400 190,439" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.42s forwards"></path><path d="M253,326 C251,356 254,400 250,439" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.42s forwards"></path></g></g><g data-fl="teefill" clip-path="url(#chTee)"><path d="M52,580 C48,516 86,486 140,464 C168,451 184,443 190,431 L250,429 C258,441 288,451 320,465 C378,487 398,518 394,580 C330,558 286,576 232,562 C176,550 118,570 52,566 Z" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 1.95s forwards"></path></g><g data-fl="tee" fill="none" stroke="var(--dc-ink)" stroke-linecap="round" stroke-linejoin="round"><path d="M190,431 C200,453 244,453 250,429 C247,463 193,463 190,431 Z" fill="var(--dc-fill)" stroke-width="3.2" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.6s forwards"></path><path d="M52,585 C48,516 86,486 140,464 C168,451 184,443 190,431" stroke-width="3.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.7s cubic-bezier(.5,0,.3,1) 1.62s forwards"></path><path d="M250,429 C258,441 288,451 320,465 C378,487 398,518 394,585" stroke-width="3.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.7s cubic-bezier(.5,0,.3,1) 1.62s forwards"></path><path d="M74,542 C128,528 180,550 236,538 C292,528 338,548 374,536" stroke-width="3" opacity="0.85" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.8s ease 1.86s forwards"></path><path d="M142,466 C158,480 164,504 161,534 M334,486 C324,500 320,518 322,538" stroke-width="2.2" opacity="0.5" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 2s forwards"></path></g><g><g data-fl="face"><path d="M292,178 C308,212 306,272 286,308 C299,272 301,220 292,178 Z" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.5s ease 1.7s forwards"></path><path d="M120,152 C119,127 176,109 220,110 C263,109 321,127 320,152 C331,177 330,198 330,218 C331,257 320,290 300,310 C283,338 257,359 220,366 C185,359 157,337 140,310 C119,289 110,257 110,218 C109,198 111,177 120,152 Z" fill="var(--dc-fill)" stroke="var(--dc-ink)" stroke-width="3.4" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.7s cubic-bezier(.5,0,.3,1) 0.95s forwards"></path></g><g data-fl="ears"><path d="M114,218 C100,216 94,234 102,250 C108,262 120,260 124,252" fill="var(--dc-fill)" stroke="var(--dc-ink)" stroke-width="3" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.45s ease 1.22s forwards"></path><path d="M326,218 C340,216 346,234 338,250 C332,262 320,260 316,252" fill="var(--dc-fill)" stroke="var(--dc-ink)" stroke-width="3" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.45s ease 1.22s forwards"></path><path d="M110,234 C104,236 104,244 110,244 C114,244 114,238 111,238" fill="none" stroke="var(--dc-ink)" stroke-width="2" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.4s forwards"></path><path d="M330,234 C336,236 336,244 330,244 C326,244 326,238 329,238" fill="none" stroke="var(--dc-ink)" stroke-width="2" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.4s forwards"></path></g><g data-fl="nose"><path d="M232,206 C236,224 239,236 244,244 C240,250 234,251 229,249 C238,242 235,222 232,206 Z" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.78s forwards"></path><path d="M228,196 C232,218 236,234 244,246 C240,254 230,255 222,250" fill="none" stroke="var(--dc-ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.56s forwards"></path></g><g data-fl="mouth"><g><path d="M194,296 C210,306 236,304 252,292" fill="none" stroke="var(--dc-ink)" stroke-width="2.8" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.45s ease 1.68s forwards"></path><path d="M206,318 C216,322 230,322 240,318" fill="none" stroke="var(--dc-ink)" stroke-width="2.2" stroke-linecap="round" opacity="0.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.76s forwards"></path></g><g style="opacity:0"><path d="M208,296 C214,288 232,288 238,296 C236,308 212,308 208,296 Z" fill="var(--dc-shade)" stroke="var(--dc-ink)" stroke-width="2.8" stroke-linejoin="round"></path><path d="M204,318 C214,323 230,323 242,317" fill="none" stroke="var(--dc-ink)" stroke-width="2.2" stroke-linecap="round" opacity="0.55"></path></g></g><g data-fl="lids"><rect x="139" y="179" width="74" height="55" rx="13" fill="var(--dc-fill)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.4s forwards"></rect><rect x="228" y="179" width="74" height="55" rx="13" fill="var(--dc-fill)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.4s forwards"></rect><rect x="143" y="182" width="66" height="16" rx="8" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.68s forwards"></rect><rect x="232" y="182" width="66" height="16" rx="8" fill="var(--dc-shade)" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 1.68s forwards"></rect></g><g data-fl="eyeL" data-amb="" style="transform-box:fill-box;transform-origin:center;animation:chblink 5.4s ease-in-out infinite"><g><circle cx="175" cy="212" r="7" fill="none" stroke="var(--dc-ink)" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.62s forwards"></circle><circle cx="175" cy="212" r="2.6" fill="var(--dc-ink)" data-fillel="" style="opacity:0;animation:chfill 0.3s ease 1.72s forwards"></circle></g></g><g data-fl="eyeR" data-amb="" style="transform-box:fill-box;transform-origin:center;animation:chblink 5.4s ease-in-out infinite"><g><circle cx="265" cy="212" r="7" fill="none" stroke="var(--dc-ink)" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.62s forwards"></circle><circle cx="265" cy="212" r="2.6" fill="var(--dc-ink)" data-fillel="" style="opacity:0;animation:chfill 0.3s ease 1.72s forwards"></circle></g></g><g data-fl="glasses" fill="none" stroke="var(--dc-ink)" stroke-linejoin="round" stroke-linecap="round"><rect x="139" y="179" width="74" height="55" rx="13" stroke-width="4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s cubic-bezier(.5,0,.3,1) 1.42s forwards"></rect><rect x="228" y="179" width="74" height="55" rx="13" stroke-width="4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s cubic-bezier(.5,0,.3,1) 1.42s forwards"></rect><path d="M213,198 C218,193 223,193 228,198" stroke-width="4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.35s ease 1.6s forwards"></path><path d="M139,200 C128,200 118,206 114,216 M302,200 C313,200 323,206 327,216" stroke-width="3.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.64s forwards"></path></g><g data-fl="brows"><g><path d="M144,172 C160,160 186,157 210,164 C210,172 205,176 199,174 C182,168 166,170 152,180 Z" fill="var(--dc-ink)" data-fillel="" style="opacity:0;animation:chfill 0.35s ease 1.74s forwards"></path><path d="M232,160 C252,148 278,148 296,160 C296,168 291,172 285,169 C270,160 252,160 240,168 Z" fill="var(--dc-ink)" data-fillel="" style="opacity:0;animation:chfill 0.35s ease 1.78s forwards"></path></g><g style="opacity:0"><path d="M142,158 C158,142 186,138 212,148 C211,157 206,161 200,158 C182,150 164,153 150,166 Z" fill="var(--dc-ink)"></path><path d="M230,146 C250,130 278,130 298,144 C297,153 292,157 286,153 C270,142 252,143 238,154 Z" fill="var(--dc-ink)"></path></g></g></g><g data-fl="hair"><path d="M122,192 C112,160 114,124 132,100 C148,76 176,60 206,56 C210,44 220,48 226,40 C234,50 244,44 250,54 C262,46 272,52 274,62 C298,70 314,88 322,110 C330,130 330,158 326,182 C316,160 298,148 274,144 C244,138 212,140 186,148 C162,154 140,168 130,186 C127,192 124,196 122,192 Z" fill="none" stroke="var(--dc-ink)" stroke-width="3.4" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.85s cubic-bezier(.5,0,.3,1) 1.05s forwards"></path><path d="M322,116 C310,140 292,152 268,156 C292,158 312,150 324,134" fill="none" stroke="var(--dc-ink)" stroke-width="2.6" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.38s forwards"></path><path d="M170,118 C196,94 238,88 272,100" fill="none" stroke="var(--dc-ink)" stroke-width="2.6" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.42s forwards"></path><path d="M150,150 C170,134 196,128 220,128" fill="none" stroke="var(--dc-ink)" stroke-width="2.2" stroke-linecap="round" opacity="0.75" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 1.48s forwards"></path><path d="M116,198 C113,216 115,230 122,240" fill="none" stroke="var(--dc-ink)" stroke-width="2.8" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.5s forwards"></path><path d="M326,192 C328,208 326,222 320,234" fill="none" stroke="var(--dc-ink)" stroke-width="2.8" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 1.5s forwards"></path></g></g></g></svg></div></div><svg viewBox="0 0 900 600" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none"><g stroke="var(--dc-ink)" fill="none" stroke-linecap="round" stroke-linejoin="round"><g><g data-amb="" style="transform-origin:157px 438px;animation:chsway 7s ease-in-out infinite"><path d="M154,432 C132,420 112,400 108,376 C126,378 146,398 154,432 Z" fill="var(--dc-tint)" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.55s ease 0.3s forwards"></path><path d="M156,432 C150,404 152,376 164,356 C174,378 172,410 160,432 Z" fill="var(--dc-fill)" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.55s ease 0.34s forwards"></path><path d="M160,432 C180,418 200,400 206,378 C188,378 168,398 158,430 Z" fill="var(--dc-tint)" stroke-width="2.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.55s ease 0.38s forwards"></path><path d="M154,434 C138,430 122,422 114,410 C128,406 144,414 154,430 Z" fill="var(--dc-shade)" fill-opacity="0.5" stroke-width="2.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.44s forwards"></path><path d="M160,434 C176,428 190,420 198,408 C184,404 168,414 160,430 Z" fill="var(--dc-shade)" fill-opacity="0.5" stroke-width="2.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.48s forwards"></path><path d="M155,430 C150,410 143,394 130,382 M157,430 C156,408 159,384 164,364 M159,430 C167,412 180,396 196,384" stroke-width="1.8" opacity="0.45" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.54s forwards"></path></g><path d="M118,438 C140,444 174,444 196,438 C196,432 176,428 157,428 C138,428 118,432 118,438 Z" fill="var(--dc-fill)" stroke-width="2.8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.45s ease 0.16s forwards"></path><path d="M121,442 C124,462 128,478 133,483 C148,487 166,487 181,483 C186,478 190,462 193,442" fill="var(--dc-fill)" stroke-width="3" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s ease 0.2s forwards"></path><path d="M124,456 C142,461 172,461 190,456" stroke-width="2" opacity="0.4" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.4s forwards"></path></g><g><path d="M219,442 C219,466 226,482 240,482 L258,482 C272,482 279,466 279,442" fill="var(--dc-fill)" stroke-width="3" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.45s ease 0.2s forwards"></path><ellipse cx="249" cy="442" rx="30" ry="8" fill="var(--dc-fill)" stroke-width="2.8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.24s forwards"></ellipse><ellipse cx="249" cy="442.5" rx="23" ry="5.6" fill="var(--dc-ink)" fill-opacity="0.45" stroke="none" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 0.5s forwards"></ellipse><ellipse cx="243" cy="441" rx="7" ry="2" fill="var(--dc-fill)" fill-opacity="0.6" stroke="none" data-fillel="" style="opacity:0;animation:chfill 0.4s ease 0.62s forwards"></ellipse><path d="M279,450 C298,449 302,472 283,475" stroke-width="2.8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.38s forwards"></path><path d="M228,470 C240,474 258,474 270,470" stroke-width="2" opacity="0.35" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.4s ease 0.46s forwards"></path><g opacity="0.65"><path d="M236,430 C230,420 238,412 232,402" stroke-width="2.4" data-amb="" style="transform-origin:236px 430px;animation:chsteam 3.4s ease-out infinite"></path><path d="M250,430 C244,418 252,410 246,398" stroke-width="2.4" data-amb="" style="transform-origin:250px 430px;animation:chsteam 3.4s ease-out .9s infinite"></path><path d="M262,430 C256,420 264,412 258,403" stroke-width="2.2" data-amb="" style="transform-origin:262px 430px;animation:chsteam 3.4s ease-out 1.8s infinite"></path></g></g><g transform="translate(721 480) scale(1) translate(-721 -480)"><rect x="605" y="297" width="232" height="163" rx="14" fill="var(--dc-fill)" fill-opacity="0.62" stroke-width="3.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.55s cubic-bezier(.5,0,.3,1) 0.18s forwards"></rect><path d="M582,452 L860,452 L860,459 C860,472 850,482 837,482 L605,482 C592,482 582,472 582,459 Z" fill="var(--dc-ink)" stroke="var(--dc-ink)" stroke-width="2" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.5s cubic-bezier(.5,0,.3,1) 0.12s forwards"></path></g><path d="M40,482 C280,474 620,490 862,480" stroke-width="3.6" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s cubic-bezier(.5,0,.3,1) 0s forwards"></path><path d="M104,496 C340,488 566,502 800,494" stroke-width="2" opacity="0.32" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:chdraw 0.6s ease 0.25s forwards"></path></g></svg><div style="position:absolute;inset:0;container-type:inline-size;pointer-events:none"><div style="display:block;position:absolute;left:69.333%;top:51.000%;width:21.556%;height:23.667%;transform-origin:50.000% 122.535%;transform:scale(1)"><div style="width:100%;height:100%;transform-origin:50.000% 107.042%;display:flex;flex-direction:column;gap:0.222cqw;padding:0.444cqw 0.600cqw;font-family:Consolas, &quot;Lucida Console&quot;, ui-monospace, SFMono-Regular, monospace;font-size:1.133cqw;line-height:1.34;color:var(--dc-screen);overflow:hidden"><div style="opacity:1;transition:opacity .14s ease">$ gh workflow run<span style="animation:chcaret 1.1s step-end infinite;opacity:0" data-amb="">▋</span></div><div style="display:grid;grid-template-columns:1fr 1fr;column-gap:0.667cqw;row-gap:0.111cqw"><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">typecheck</div><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">lint</div><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">test</div><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">build</div><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">dev → stg</div><div style="opacity:1;transition:opacity .16s ease;white-space:nowrap">stg → prd</div></div><div style="opacity:0;transition:opacity .14s ease">$ clear<span style="animation:chcaret 1.1s step-end infinite" data-amb="">▋</span></div></div></div></div></div></div></section></div>
+  <h1>scene · facundo</h1>
+  <div
+    class="dc-scene"
+    aria-hidden="true"
+    style="
+      --dc-ink: #244d73;
+      --dc-fill: #f3f1e9;
+      --dc-shade: #d4d0c4;
+      --dc-tint: #e2dfd4;
+      --dc-screen: #244d73;
+      --dc-bg: transparent;
+      background: var(--dc-bg);
+      overflow-x: clip;
+      min-height: 100vh;
+    "
+  >
+    <section
+      style="
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      "
+    >
+      <div
+        style="position: relative; width: 100%; max-width: min(980px, 132vh); aspect-ratio: 900/600"
+      >
+        <div style="position: relative; width: 100%; height: 100%">
+          <svg
+            viewBox="0 0 900 600"
+            style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible"
+          >
+            <defs>
+              <pattern
+                id="chHatch"
+                width="9"
+                height="9"
+                patternUnits="userSpaceOnUse"
+                patternTransform="rotate(45)"
+              >
+                <line x1="0" y1="0" x2="0" y2="9" stroke="var(--dc-tint)" stroke-width="3"></line>
+              </pattern>
+              <clipPath id="chWin">
+                <rect x="66" y="94" width="180" height="180" rx="8"></rect>
+              </clipPath>
+            </defs>
+            <rect
+              x="0"
+              y="215"
+              width="900"
+              height="215"
+              fill="url(#chHatch)"
+              data-fillel=""
+              style="opacity: 0; animation: chfill 0.5s ease 0.02s forwards"
+            ></rect>
+            <g>
+              <rect
+                x="63"
+                y="91"
+                width="186"
+                height="186"
+                rx="10"
+                fill="var(--dc-fill)"
+                data-fillel=""
+                style="opacity: 0; animation: chfill 0.4s ease 0.2s forwards"
+              ></rect>
+              <g clip-path="url(#chWin)">
+                <g data-amb="" style="animation: chcloudA 34s linear infinite">
+                  <path
+                    d="M96,138 C88,138 84,130 90,124 C90,113 104,109 112,116 C122,110 136,116 137,127 C147,127 150,138 141,138 Z"
+                    fill="var(--dc-tint)"
+                    stroke="var(--dc-ink)"
+                    stroke-width="1.6"
+                    stroke-opacity="0.35"
+                    data-fillel=""
+                    style="opacity: 0; animation: chfill 0.5s ease 0.5s forwards"
+                  ></path>
+                </g>
+                <g data-amb="" style="animation: chcloudB 52s linear infinite">
+                  <path
+                    d="M150,214 C142,214 139,206 145,201 C146,192 158,189 165,195 C174,190 185,196 186,205 C194,205 197,214 189,214 Z"
+                    fill="var(--dc-tint)"
+                    stroke="var(--dc-ink)"
+                    stroke-width="1.4"
+                    stroke-opacity="0.28"
+                    data-fillel=""
+                    style="opacity: 0; animation: chfill 0.5s ease 0.58s forwards"
+                  ></path>
+                </g>
+              </g>
+              <g stroke="var(--dc-ink)" fill="none" stroke-linecap="round">
+                <rect
+                  x="63"
+                  y="91"
+                  width="186"
+                  height="186"
+                  rx="10"
+                  stroke-width="3"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.55s cubic-bezier(0.5, 0, 0.3, 1) 0.08s forwards;
+                  "
+                ></rect>
+                <path
+                  d="M157,93 C158,146 156,212 157,275"
+                  stroke-width="2.6"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.3s forwards;
+                  "
+                ></path>
+                <path
+                  d="M65,183 C120,181 194,185 247,183"
+                  stroke-width="2.6"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.34s forwards;
+                  "
+                ></path>
+                <path
+                  d="M84,156 C100,136 118,120 136,110 M96,172 C118,144 146,120 172,108"
+                  stroke="var(--dc-shade)"
+                  stroke-width="3"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.5s ease 0.42s forwards;
+                  "
+                ></path>
+                <path
+                  d="M55,281 C120,277 196,283 257,279"
+                  stroke-width="3"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.4s forwards;
+                  "
+                ></path>
+              </g>
+            </g>
+            <g>
+              <g data-fillel="" style="opacity: 0; animation: chfill 0.4s ease 0.6s forwards">
+                <path d="M266,158 L300,152 L306,186 L272,192 Z" fill="var(--dc-tint)"></path>
+                <path d="M312,150 L346,156 L340,190 L306,184 Z" fill="var(--dc-fill)"></path>
+                <path
+                  d="M280,204 L314,198 L320,232 L286,238 Z"
+                  fill="var(--dc-shade)"
+                  fill-opacity="0.6"
+                ></path>
+              </g>
+              <g stroke="var(--dc-ink)" fill="none" stroke-linejoin="round" stroke-linecap="round">
+                <path
+                  d="M266,158 L300,152 L306,186 L272,192 Z M312,150 L346,156 L340,190 L306,184 Z M280,204 L314,198 L320,232 L286,238 Z"
+                  stroke-width="2.2"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.7s ease 0.5s forwards;
+                  "
+                ></path>
+                <path
+                  d="M272,166 L296,162 M273,173 L290,170 M318,160 L338,164 M319,167 L332,169 M286,212 L310,208 M287,219 L304,216 M288,226 L298,224"
+                  stroke-width="1.8"
+                  opacity="0.55"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.6s ease 0.7s forwards;
+                  "
+                ></path>
+              </g>
+            </g>
+            <g>
+              <g data-fillel="" style="opacity: 0; animation: chfill 0.45s ease 0.7s forwards">
+                <path d="M624,154 L624,112 L640,112 L640,154 Z" fill="var(--dc-tint)"></path>
+                <path d="M643,154 L643,106 L655,106 L655,154 Z" fill="var(--dc-shade)"></path>
+                <path d="M658,154 L658,116 L676,116 L676,154 Z" fill="var(--dc-tint)"></path>
+                <path d="M679,154 L679,103 L691,103 L691,154 Z" fill="var(--dc-shade)"></path>
+                <path d="M694,154 L694,110 L712,110 L712,154 Z" fill="var(--dc-tint)"></path>
+                <path d="M716,154 L732,110 L744,115 L728,154 Z" fill="var(--dc-shade)"></path>
+                <path d="M750,154 L750,146 L796,146 L796,154 Z" fill="var(--dc-tint)"></path>
+                <path d="M754,146 L754,139 L800,139 L800,146 Z" fill="var(--dc-shade)"></path>
+                <path d="M752,139 L752,132 L794,132 L794,139 Z" fill="var(--dc-tint)"></path>
+                <path d="M624,222 L624,174 L642,174 L642,222 Z" fill="var(--dc-shade)"></path>
+                <path d="M645,222 L645,166 L657,166 L657,222 Z" fill="var(--dc-tint)"></path>
+                <path d="M660,222 L660,178 L672,178 L672,222 Z" fill="var(--dc-shade)"></path>
+                <path d="M675,222 L675,170 L695,170 L695,222 Z" fill="var(--dc-tint)"></path>
+                <path d="M698,222 L698,182 L710,182 L710,222 Z" fill="var(--dc-shade)"></path>
+                <path d="M714,222 L730,176 L744,181 L728,222 Z" fill="var(--dc-tint)"></path>
+                <path d="M748,222 L748,213 L800,213 L800,222 Z" fill="var(--dc-shade)"></path>
+                <path d="M752,213 L752,205 L804,205 L804,213 Z" fill="var(--dc-tint)"></path>
+                <path d="M816,222 L814,206 L842,206 L840,222 Z" fill="var(--dc-tint)"></path>
+                <path
+                  d="M810,152 C802,146 804,134 814,133 C816,124 832,124 833,134 C842,138 840,152 830,152 Z"
+                  fill="var(--dc-fill)"
+                ></path>
+              </g>
+              <g stroke="var(--dc-ink)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M614,94 L858,94 M616,94 L616,226 M856,94 L856,226 M612,226 L860,226 M613,154 L859,154"
+                  stroke-width="3.2"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.6s cubic-bezier(0.5, 0, 0.3, 1) 0.12s forwards;
+                  "
+                ></path>
+                <path
+                  d="M620,150 L852,150 M620,222 L852,222"
+                  stroke-width="1.8"
+                  opacity="0.28"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.5s ease 0.34s forwards;
+                  "
+                ></path>
+                <g stroke-width="2.3">
+                  <path
+                    d="M624,154 L624,112 L640,112 L640,154 M643,154 L643,106 L655,106 L655,154 M658,154 L658,116 L676,116 L676,154 M679,154 L679,103 L691,103 L691,154 M694,154 L694,110 L712,110 L712,154 M716,154 L732,110 L744,115 L728,154 Z"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.6s ease 0.38s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M750,154 L750,146 L796,146 L796,154 M754,146 L754,139 L800,139 L800,146 M752,139 L752,132 L794,132 L794,139"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.5s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M624,222 L624,174 L642,174 L642,222 M645,222 L645,166 L657,166 L657,222 M660,222 L660,178 L672,178 L672,222 M675,222 L675,170 L695,170 L695,222 M698,222 L698,182 L710,182 L710,222 M714,222 L730,176 L744,181 L728,222 Z"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.6s ease 0.48s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M748,222 L748,213 L800,213 L800,222 M752,213 L752,205 L804,205 L804,213"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.58s forwards;
+                    "
+                  ></path>
+                </g>
+                <g stroke-width="1.7" opacity="0.5">
+                  <path
+                    d="M627,122 L637,122 M627,128 L637,128 M661,126 L673,126 M661,132 L673,132 M697,120 L709,120 M697,126 L709,126 M627,184 L639,184 M627,190 L639,190 M678,180 L692,180 M678,186 L692,186"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.6s ease 0.68s forwards;
+                    "
+                  ></path>
+                </g>
+                <g stroke-width="2.2">
+                  <path
+                    d="M810,152 C802,146 804,134 814,133 C816,124 832,124 833,134 C842,138 840,152 830,152 Z"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.62s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M833,131 C839,129 843,132 841,135 L847,136 L841,140"
+                    stroke-linejoin="round"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.4s ease 0.74s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M826,131 C825,130 823,130 823,132 C823,134 826,134 826,132"
+                    stroke-width="1.8"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.3s ease 0.8s forwards;
+                    "
+                  ></path>
+                </g>
+                <g stroke-width="2.2">
+                  <path
+                    d="M816,222 L814,206 L842,206 L840,222"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.4s ease 0.66s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M822,206 C817,197 821,187 828,190 M828,206 C828,193 835,187 839,192 M825,206 C824,199 820,195 816,197"
+                    stroke-width="2"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.76s forwards;
+                    "
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <div
+            style="
+              position: absolute;
+              left: 31.5%;
+              top: 11%;
+              width: 37%;
+              pointer-events: none;
+              transform-origin: 50% 100%;
+            "
+          >
+            <div style="position: relative; width: 100%; aspect-ratio: 440/620">
+              <svg
+                viewBox="0 0 440 620"
+                style="position: absolute; top: -1.8%; left: 6%; width: 100%"
+              >
+                <defs>
+                  <clipPath id="chTorso">
+                    <rect x="-60" y="-60" width="560" height="617"></rect>
+                  </clipPath>
+                  <clipPath id="chTee">
+                    <path
+                      d="M52,585 C48,516 86,486 140,464 C168,451 184,443 190,431 C199,452 244,452 250,429 C258,441 288,451 320,465 C378,487 398,518 394,585 L394,600 L52,600 Z"
+                    ></path>
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#chTorso)">
+                  <g transform="rotate(-2.2 220 300)">
+                    <g data-fl="hairback">
+                      <path
+                        d="M124,196 C112,162 116,124 134,100 C150,74 178,58 208,54 C214,42 224,46 230,38 C238,48 248,42 254,52 C266,44 276,50 278,60 C302,68 318,86 326,110 C334,132 332,160 328,186 C316,164 296,150 272,146 C242,140 210,142 184,150 C160,158 138,172 128,190 Z"
+                        fill="var(--dc-shade)"
+                        transform="translate(8 7)"
+                        data-fillel=""
+                        style="opacity: 0; animation: chfill 0.5s ease 1.5s forwards"
+                      ></path>
+                    </g>
+                    <g data-fl="neck">
+                      <path
+                        d="M186,318 C188,352 185,396 189,439 L253,439 C256,396 252,352 254,316 Z"
+                        fill="var(--dc-fill)"
+                        data-fillel=""
+                        style="opacity: 0; animation: chfill 0.4s ease 1.4s forwards"
+                      ></path>
+                      <path
+                        d="M204,340 C216,356 236,356 248,338 C244,364 208,364 204,340 Z"
+                        fill="var(--dc-shade)"
+                        data-fillel=""
+                        style="opacity: 0; animation: chfill 0.4s ease 1.7s forwards"
+                      ></path>
+                      <g fill="none" stroke="var(--dc-ink)" stroke-width="3" stroke-linecap="round">
+                        <path
+                          d="M187,330 C189,358 186,400 190,439"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.5s ease 1.42s forwards;
+                          "
+                        ></path>
+                        <path
+                          d="M253,326 C251,356 254,400 250,439"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.5s ease 1.42s forwards;
+                          "
+                        ></path>
+                      </g>
+                    </g>
+                    <g data-fl="teefill" clip-path="url(#chTee)">
+                      <path
+                        d="M52,580 C48,516 86,486 140,464 C168,451 184,443 190,431 L250,429 C258,441 288,451 320,465 C378,487 398,518 394,580 C330,558 286,576 232,562 C176,550 118,570 52,566 Z"
+                        fill="var(--dc-shade)"
+                        data-fillel=""
+                        style="opacity: 0; animation: chfill 0.5s ease 1.95s forwards"
+                      ></path>
+                    </g>
+                    <g
+                      data-fl="tee"
+                      fill="none"
+                      stroke="var(--dc-ink)"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M190,431 C200,453 244,453 250,429 C247,463 193,463 190,431 Z"
+                        fill="var(--dc-fill)"
+                        stroke-width="3.2"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.5s ease 1.6s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M52,585 C48,516 86,486 140,464 C168,451 184,443 190,431"
+                        stroke-width="3.4"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.7s cubic-bezier(0.5, 0, 0.3, 1) 1.62s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M250,429 C258,441 288,451 320,465 C378,487 398,518 394,585"
+                        stroke-width="3.4"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.7s cubic-bezier(0.5, 0, 0.3, 1) 1.62s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M74,542 C128,528 180,550 236,538 C292,528 338,548 374,536"
+                        stroke-width="3"
+                        opacity="0.85"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.8s ease 1.86s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M142,466 C158,480 164,504 161,534 M334,486 C324,500 320,518 322,538"
+                        stroke-width="2.2"
+                        opacity="0.5"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.6s ease 2s forwards;
+                        "
+                      ></path>
+                    </g>
+                    <g>
+                      <g data-fl="face">
+                        <path
+                          d="M292,178 C308,212 306,272 286,308 C299,272 301,220 292,178 Z"
+                          fill="var(--dc-shade)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.5s ease 1.7s forwards"
+                        ></path>
+                        <path
+                          d="M120,152 C119,127 176,109 220,110 C263,109 321,127 320,152 C331,177 330,198 330,218 C331,257 320,290 300,310 C283,338 257,359 220,366 C185,359 157,337 140,310 C119,289 110,257 110,218 C109,198 111,177 120,152 Z"
+                          fill="var(--dc-fill)"
+                          stroke="var(--dc-ink)"
+                          stroke-width="3.4"
+                          stroke-linejoin="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.7s cubic-bezier(0.5, 0, 0.3, 1) 0.95s forwards;
+                          "
+                        ></path>
+                      </g>
+                      <g data-fl="ears">
+                        <path
+                          d="M114,218 C100,216 94,234 102,250 C108,262 120,260 124,252"
+                          fill="var(--dc-fill)"
+                          stroke="var(--dc-ink)"
+                          stroke-width="3"
+                          stroke-linejoin="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.45s ease 1.22s forwards;
+                          "
+                        ></path>
+                        <path
+                          d="M326,218 C340,216 346,234 338,250 C332,262 320,260 316,252"
+                          fill="var(--dc-fill)"
+                          stroke="var(--dc-ink)"
+                          stroke-width="3"
+                          stroke-linejoin="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.45s ease 1.22s forwards;
+                          "
+                        ></path>
+                        <path
+                          d="M110,234 C104,236 104,244 110,244 C114,244 114,238 111,238"
+                          fill="none"
+                          stroke="var(--dc-ink)"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.4s ease 1.4s forwards;
+                          "
+                        ></path>
+                        <path
+                          d="M330,234 C336,236 336,244 330,244 C326,244 326,238 329,238"
+                          fill="none"
+                          stroke="var(--dc-ink)"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.4s ease 1.4s forwards;
+                          "
+                        ></path>
+                      </g>
+                      <g data-fl="nose">
+                        <path
+                          d="M232,206 C236,224 239,236 244,244 C240,250 234,251 229,249 C238,242 235,222 232,206 Z"
+                          fill="var(--dc-shade)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.4s ease 1.78s forwards"
+                        ></path>
+                        <path
+                          d="M228,196 C232,218 236,234 244,246 C240,254 230,255 222,250"
+                          fill="none"
+                          stroke="var(--dc-ink)"
+                          stroke-width="2.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.5s ease 1.56s forwards;
+                          "
+                        ></path>
+                      </g>
+                      <g data-fl="mouth">
+                        <g>
+                          <path
+                            d="M194,296 C210,306 236,304 252,292"
+                            fill="none"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.8"
+                            stroke-linecap="round"
+                            pathLength="1"
+                            style="
+                              stroke-dasharray: 1;
+                              stroke-dashoffset: 1;
+                              animation: chdraw 0.45s ease 1.68s forwards;
+                            "
+                          ></path>
+                          <path
+                            d="M206,318 C216,322 230,322 240,318"
+                            fill="none"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            opacity="0.6"
+                            pathLength="1"
+                            style="
+                              stroke-dasharray: 1;
+                              stroke-dashoffset: 1;
+                              animation: chdraw 0.4s ease 1.76s forwards;
+                            "
+                          ></path>
+                        </g>
+                        <g style="opacity: 0">
+                          <path
+                            d="M208,296 C214,288 232,288 238,296 C236,308 212,308 208,296 Z"
+                            fill="var(--dc-shade)"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.8"
+                            stroke-linejoin="round"
+                          ></path>
+                          <path
+                            d="M204,318 C214,323 230,323 242,317"
+                            fill="none"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            opacity="0.55"
+                          ></path>
+                        </g>
+                      </g>
+                      <g data-fl="lids">
+                        <rect
+                          x="139"
+                          y="179"
+                          width="74"
+                          height="55"
+                          rx="13"
+                          fill="var(--dc-fill)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.4s ease 1.4s forwards"
+                        ></rect>
+                        <rect
+                          x="228"
+                          y="179"
+                          width="74"
+                          height="55"
+                          rx="13"
+                          fill="var(--dc-fill)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.4s ease 1.4s forwards"
+                        ></rect>
+                        <rect
+                          x="143"
+                          y="182"
+                          width="66"
+                          height="16"
+                          rx="8"
+                          fill="var(--dc-shade)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.4s ease 1.68s forwards"
+                        ></rect>
+                        <rect
+                          x="232"
+                          y="182"
+                          width="66"
+                          height="16"
+                          rx="8"
+                          fill="var(--dc-shade)"
+                          data-fillel=""
+                          style="opacity: 0; animation: chfill 0.4s ease 1.68s forwards"
+                        ></rect>
+                      </g>
+                      <g
+                        data-fl="eyeL"
+                        data-amb=""
+                        style="
+                          transform-box: fill-box;
+                          transform-origin: center;
+                          animation: chblink 5.4s ease-in-out infinite;
+                        "
+                      >
+                        <g>
+                          <circle
+                            cx="175"
+                            cy="212"
+                            r="7"
+                            fill="none"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.6"
+                            pathLength="1"
+                            style="
+                              stroke-dasharray: 1;
+                              stroke-dashoffset: 1;
+                              animation: chdraw 0.4s ease 1.62s forwards;
+                            "
+                          ></circle>
+                          <circle
+                            cx="175"
+                            cy="212"
+                            r="2.6"
+                            fill="var(--dc-ink)"
+                            data-fillel=""
+                            style="opacity: 0; animation: chfill 0.3s ease 1.72s forwards"
+                          ></circle>
+                        </g>
+                      </g>
+                      <g
+                        data-fl="eyeR"
+                        data-amb=""
+                        style="
+                          transform-box: fill-box;
+                          transform-origin: center;
+                          animation: chblink 5.4s ease-in-out infinite;
+                        "
+                      >
+                        <g>
+                          <circle
+                            cx="265"
+                            cy="212"
+                            r="7"
+                            fill="none"
+                            stroke="var(--dc-ink)"
+                            stroke-width="2.6"
+                            pathLength="1"
+                            style="
+                              stroke-dasharray: 1;
+                              stroke-dashoffset: 1;
+                              animation: chdraw 0.4s ease 1.62s forwards;
+                            "
+                          ></circle>
+                          <circle
+                            cx="265"
+                            cy="212"
+                            r="2.6"
+                            fill="var(--dc-ink)"
+                            data-fillel=""
+                            style="opacity: 0; animation: chfill 0.3s ease 1.72s forwards"
+                          ></circle>
+                        </g>
+                      </g>
+                      <g
+                        data-fl="glasses"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                      >
+                        <rect
+                          x="139"
+                          y="179"
+                          width="74"
+                          height="55"
+                          rx="13"
+                          stroke-width="4"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.6s cubic-bezier(0.5, 0, 0.3, 1) 1.42s forwards;
+                          "
+                        ></rect>
+                        <rect
+                          x="228"
+                          y="179"
+                          width="74"
+                          height="55"
+                          rx="13"
+                          stroke-width="4"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.6s cubic-bezier(0.5, 0, 0.3, 1) 1.42s forwards;
+                          "
+                        ></rect>
+                        <path
+                          d="M213,198 C218,193 223,193 228,198"
+                          stroke-width="4"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.35s ease 1.6s forwards;
+                          "
+                        ></path>
+                        <path
+                          d="M139,200 C128,200 118,206 114,216 M302,200 C313,200 323,206 327,216"
+                          stroke-width="3.4"
+                          pathLength="1"
+                          style="
+                            stroke-dasharray: 1;
+                            stroke-dashoffset: 1;
+                            animation: chdraw 0.4s ease 1.64s forwards;
+                          "
+                        ></path>
+                      </g>
+                      <g data-fl="brows">
+                        <g>
+                          <path
+                            d="M144,172 C160,160 186,157 210,164 C210,172 205,176 199,174 C182,168 166,170 152,180 Z"
+                            fill="var(--dc-ink)"
+                            data-fillel=""
+                            style="opacity: 0; animation: chfill 0.35s ease 1.74s forwards"
+                          ></path>
+                          <path
+                            d="M232,160 C252,148 278,148 296,160 C296,168 291,172 285,169 C270,160 252,160 240,168 Z"
+                            fill="var(--dc-ink)"
+                            data-fillel=""
+                            style="opacity: 0; animation: chfill 0.35s ease 1.78s forwards"
+                          ></path>
+                        </g>
+                        <g style="opacity: 0">
+                          <path
+                            d="M142,158 C158,142 186,138 212,148 C211,157 206,161 200,158 C182,150 164,153 150,166 Z"
+                            fill="var(--dc-ink)"
+                          ></path>
+                          <path
+                            d="M230,146 C250,130 278,130 298,144 C297,153 292,157 286,153 C270,142 252,143 238,154 Z"
+                            fill="var(--dc-ink)"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                    <g data-fl="hair">
+                      <path
+                        d="M122,192 C112,160 114,124 132,100 C148,76 176,60 206,56 C210,44 220,48 226,40 C234,50 244,44 250,54 C262,46 272,52 274,62 C298,70 314,88 322,110 C330,130 330,158 326,182 C316,160 298,148 274,144 C244,138 212,140 186,148 C162,154 140,168 130,186 C127,192 124,196 122,192 Z"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="3.4"
+                        stroke-linejoin="round"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.85s cubic-bezier(0.5, 0, 0.3, 1) 1.05s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M322,116 C310,140 292,152 268,156 C292,158 312,150 324,134"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="2.6"
+                        stroke-linecap="round"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.5s ease 1.38s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M170,118 C196,94 238,88 272,100"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="2.6"
+                        stroke-linecap="round"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.5s ease 1.42s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M150,150 C170,134 196,128 220,128"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        opacity="0.75"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.5s ease 1.48s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M116,198 C113,216 115,230 122,240"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="2.8"
+                        stroke-linecap="round"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.4s ease 1.5s forwards;
+                        "
+                      ></path>
+                      <path
+                        d="M326,192 C328,208 326,222 320,234"
+                        fill="none"
+                        stroke="var(--dc-ink)"
+                        stroke-width="2.8"
+                        stroke-linecap="round"
+                        pathLength="1"
+                        style="
+                          stroke-dasharray: 1;
+                          stroke-dashoffset: 1;
+                          animation: chdraw 0.4s ease 1.5s forwards;
+                        "
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <svg
+            viewBox="0 0 900 600"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              overflow: visible;
+              pointer-events: none;
+            "
+          >
+            <g stroke="var(--dc-ink)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <g>
+                <g
+                  data-amb=""
+                  style="transform-origin: 157px 438px; animation: chsway 7s ease-in-out infinite"
+                >
+                  <path
+                    d="M154,432 C132,420 112,400 108,376 C126,378 146,398 154,432 Z"
+                    fill="var(--dc-tint)"
+                    stroke-width="2.6"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.55s ease 0.3s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M156,432 C150,404 152,376 164,356 C174,378 172,410 160,432 Z"
+                    fill="var(--dc-fill)"
+                    stroke-width="2.6"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.55s ease 0.34s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M160,432 C180,418 200,400 206,378 C188,378 168,398 158,430 Z"
+                    fill="var(--dc-tint)"
+                    stroke-width="2.6"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.55s ease 0.38s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M154,434 C138,430 122,422 114,410 C128,406 144,414 154,430 Z"
+                    fill="var(--dc-shade)"
+                    fill-opacity="0.5"
+                    stroke-width="2.4"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.44s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M160,434 C176,428 190,420 198,408 C184,404 168,414 160,430 Z"
+                    fill="var(--dc-shade)"
+                    fill-opacity="0.5"
+                    stroke-width="2.4"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.5s ease 0.48s forwards;
+                    "
+                  ></path>
+                  <path
+                    d="M155,430 C150,410 143,394 130,382 M157,430 C156,408 159,384 164,364 M159,430 C167,412 180,396 196,384"
+                    stroke-width="1.8"
+                    opacity="0.45"
+                    pathLength="1"
+                    style="
+                      stroke-dasharray: 1;
+                      stroke-dashoffset: 1;
+                      animation: chdraw 0.6s ease 0.54s forwards;
+                    "
+                  ></path>
+                </g>
+                <path
+                  d="M118,438 C140,444 174,444 196,438 C196,432 176,428 157,428 C138,428 118,432 118,438 Z"
+                  fill="var(--dc-fill)"
+                  stroke-width="2.8"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.45s ease 0.16s forwards;
+                  "
+                ></path>
+                <path
+                  d="M121,442 C124,462 128,478 133,483 C148,487 166,487 181,483 C186,478 190,462 193,442"
+                  fill="var(--dc-fill)"
+                  stroke-width="3"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.5s ease 0.2s forwards;
+                  "
+                ></path>
+                <path
+                  d="M124,456 C142,461 172,461 190,456"
+                  stroke-width="2"
+                  opacity="0.4"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.4s forwards;
+                  "
+                ></path>
+              </g>
+              <g>
+                <path
+                  d="M219,442 C219,466 226,482 240,482 L258,482 C272,482 279,466 279,442"
+                  fill="var(--dc-fill)"
+                  stroke-width="3"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.45s ease 0.2s forwards;
+                  "
+                ></path>
+                <ellipse
+                  cx="249"
+                  cy="442"
+                  rx="30"
+                  ry="8"
+                  fill="var(--dc-fill)"
+                  stroke-width="2.8"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.24s forwards;
+                  "
+                ></ellipse>
+                <ellipse
+                  cx="249"
+                  cy="442.5"
+                  rx="23"
+                  ry="5.6"
+                  fill="var(--dc-ink)"
+                  fill-opacity="0.45"
+                  stroke="none"
+                  data-fillel=""
+                  style="opacity: 0; animation: chfill 0.4s ease 0.5s forwards"
+                ></ellipse>
+                <ellipse
+                  cx="243"
+                  cy="441"
+                  rx="7"
+                  ry="2"
+                  fill="var(--dc-fill)"
+                  fill-opacity="0.6"
+                  stroke="none"
+                  data-fillel=""
+                  style="opacity: 0; animation: chfill 0.4s ease 0.62s forwards"
+                ></ellipse>
+                <path
+                  d="M279,450 C298,449 302,472 283,475"
+                  stroke-width="2.8"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.38s forwards;
+                  "
+                ></path>
+                <path
+                  d="M228,470 C240,474 258,474 270,470"
+                  stroke-width="2"
+                  opacity="0.35"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.4s ease 0.46s forwards;
+                  "
+                ></path>
+                <g opacity="0.65">
+                  <path
+                    d="M236,430 C230,420 238,412 232,402"
+                    stroke-width="2.4"
+                    data-amb=""
+                    style="transform-origin: 236px 430px; animation: chsteam 3.4s ease-out infinite"
+                  ></path>
+                  <path
+                    d="M250,430 C244,418 252,410 246,398"
+                    stroke-width="2.4"
+                    data-amb=""
+                    style="
+                      transform-origin: 250px 430px;
+                      animation: chsteam 3.4s ease-out 0.9s infinite;
+                    "
+                  ></path>
+                  <path
+                    d="M262,430 C256,420 264,412 258,403"
+                    stroke-width="2.2"
+                    data-amb=""
+                    style="
+                      transform-origin: 262px 430px;
+                      animation: chsteam 3.4s ease-out 1.8s infinite;
+                    "
+                  ></path>
+                </g>
+              </g>
+              <g transform="translate(721 480) scale(1) translate(-721 -480)">
+                <rect
+                  x="605"
+                  y="297"
+                  width="232"
+                  height="163"
+                  rx="14"
+                  fill="var(--dc-fill)"
+                  fill-opacity="0.62"
+                  stroke-width="3.6"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.55s cubic-bezier(0.5, 0, 0.3, 1) 0.18s forwards;
+                  "
+                ></rect>
+                <path
+                  d="M582,452 L860,452 L860,459 C860,472 850,482 837,482 L605,482 C592,482 582,472 582,459 Z"
+                  fill="var(--dc-ink)"
+                  stroke="var(--dc-ink)"
+                  stroke-width="2"
+                  pathLength="1"
+                  style="
+                    stroke-dasharray: 1;
+                    stroke-dashoffset: 1;
+                    animation: chdraw 0.5s cubic-bezier(0.5, 0, 0.3, 1) 0.12s forwards;
+                  "
+                ></path>
+              </g>
+              <path
+                d="M40,482 C280,474 620,490 862,480"
+                stroke-width="3.6"
+                pathLength="1"
+                style="
+                  stroke-dasharray: 1;
+                  stroke-dashoffset: 1;
+                  animation: chdraw 0.6s cubic-bezier(0.5, 0, 0.3, 1) 0s forwards;
+                "
+              ></path>
+              <path
+                d="M104,496 C340,488 566,502 800,494"
+                stroke-width="2"
+                opacity="0.32"
+                pathLength="1"
+                style="
+                  stroke-dasharray: 1;
+                  stroke-dashoffset: 1;
+                  animation: chdraw 0.6s ease 0.25s forwards;
+                "
+              ></path>
+            </g>
+          </svg>
+          <div
+            style="position: absolute; inset: 0; container-type: inline-size; pointer-events: none"
+          >
+            <div
+              style="
+                display: block;
+                position: absolute;
+                left: 69.333%;
+                top: 51%;
+                width: 21.556%;
+                height: 23.667%;
+                transform-origin: 50% 122.535%;
+                transform: scale(1);
+              "
+            >
+              <div
+                style="
+                  width: 100%;
+                  height: 100%;
+                  transform-origin: 50% 107.042%;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.222cqw;
+                  padding: 0.444cqw 0.6cqw;
+                  font-family: Consolas, 'Lucida Console', ui-monospace, SFMono-Regular, monospace;
+                  font-size: 1.133cqw;
+                  line-height: 1.34;
+                  color: var(--dc-screen);
+                  overflow: hidden;
+                "
+              >
+                <div style="opacity: 1; transition: opacity 0.14s ease">
+                  $ gh workflow run<span
+                    style="animation: chcaret 1.1s step-end infinite; opacity: 0"
+                    data-amb=""
+                    >▋</span
+                  >
+                </div>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    column-gap: 0.667cqw;
+                    row-gap: 0.111cqw;
+                  "
+                >
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    typecheck
+                  </div>
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    lint
+                  </div>
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    test
+                  </div>
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    build
+                  </div>
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    dev → stg
+                  </div>
+                  <div style="opacity: 1; transition: opacity 0.16s ease; white-space: nowrap">
+                    stg → prd
+                  </div>
+                </div>
+                <div style="opacity: 0; transition: opacity 0.14s ease">
+                  $ clear<span style="animation: chcaret 1.1s step-end infinite" data-amb=""
+                    >▋</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>

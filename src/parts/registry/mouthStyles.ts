@@ -1,0 +1,127 @@
+import type { MouthId, Primitive } from '../partTypes'
+
+export const mouthStyles: Record<MouthId, Primitive[]> = {
+  smile: [
+    {
+      name: 'lipLine',
+      path: 'M194,296 C210,306 236,304 252,292',
+      strokeWidth: 2,
+      drawDelay: 1.68,
+      drawDuration: 0.45,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M206,318 C216,322 230,322 240,318',
+      strokeWidth: 1.6,
+      opacity: 0.6,
+      drawDelay: 1.76,
+      drawDuration: 0.4,
+    },
+  ],
+  grin: [
+    {
+      name: 'openMouth',
+      path: 'M192,290 C210,310 238,308 252,288 C246,314 200,318 192,290 Z',
+      fill: 'skinShade',
+      stroke: 'ink',
+      strokeWidth: 2,
+      drawDelay: 1.66,
+      drawDuration: 0.5,
+    },
+    {
+      name: 'teethHighlight',
+      path: 'M199,295 C214,302 234,301 247,292',
+      stroke: 'skinLight',
+      strokeWidth: 1.4,
+      opacity: 0.85,
+      drawDelay: 1.78,
+      drawDuration: 0.35,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M206,320 C216,323 230,323 240,320',
+      strokeWidth: 1.4,
+      opacity: 0.5,
+      drawDelay: 1.8,
+      drawDuration: 0.35,
+    },
+  ],
+  neutral: [
+    {
+      name: 'lipLine',
+      path: 'M202,300 C216,304 232,304 244,300',
+      strokeWidth: 2,
+      drawDelay: 1.68,
+      drawDuration: 0.4,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M208,320 C218,323 228,323 238,320',
+      strokeWidth: 1.4,
+      opacity: 0.5,
+      drawDelay: 1.76,
+      drawDuration: 0.35,
+    },
+  ],
+  soft: [
+    {
+      name: 'lipLine',
+      path: 'M200,300 C212,308 230,308 242,300',
+      strokeWidth: 2.4,
+      drawDelay: 1.68,
+      drawDuration: 0.4,
+    },
+    {
+      name: 'lipCorners',
+      path: 'M200,300 C204,297 208,296 211,297 M242,300 C238,297 234,296 231,297',
+      strokeWidth: 1.8,
+      opacity: 0.6,
+      drawDelay: 1.78,
+      drawDuration: 0.3,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M208,320 C217,324 227,324 236,320',
+      strokeWidth: 2,
+      opacity: 0.5,
+      drawDelay: 1.82,
+      drawDuration: 0.3,
+    },
+  ],
+  smirk: [
+    {
+      name: 'lipLine',
+      path: 'M198,298 C212,306 238,304 250,290 C252,288 254,284 253,280',
+      strokeWidth: 2,
+      drawDelay: 1.68,
+      drawDuration: 0.5,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M206,318 C216,322 228,322 238,319',
+      strokeWidth: 1.4,
+      opacity: 0.5,
+      drawDelay: 1.78,
+      drawDuration: 0.35,
+    },
+  ],
+  pout: [
+    {
+      name: 'lips',
+      path: 'M212,296 C217,289 231,289 236,296 C233,305 215,305 212,296 Z',
+      fill: 'skinShade',
+      stroke: 'ink',
+      strokeWidth: 1.9,
+      drawDelay: 1.68,
+      drawDuration: 0.4,
+    },
+    {
+      name: 'chinCrease',
+      path: 'M210,318 C220,322 230,322 240,318',
+      strokeWidth: 1.4,
+      opacity: 0.5,
+      drawDelay: 1.78,
+      drawDuration: 0.35,
+    },
+  ],
+}

@@ -66,6 +66,7 @@
     "test:watch": "vitest",
     "validate:persona": "tsx scripts/validate-persona.ts",
     "capture:reference": "tsx scripts/captureReferenceMarkup.tsx",
+    "import:parts": "tsx scripts/importPartsFromDesign.ts && prettier --write --log-level warn src/parts/registry",
     "prepack": "tsup",
     "prepare": "tsup"
   },

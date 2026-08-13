@@ -3,11 +3,11 @@
 `@facundolizarraga/portfolio-characters` began as a fork of the unpublished package
 `@lizdevs/desk-character`.
 
-| | |
-| --- | --- |
-| Base commit | `a9ddffab5db71d06427f5d062352aff3e021c90a` — _"Fix the blink, enlarge and turn the laptop, drop all comments"_ |
-| Forked from | the **working tree**, not the commit |
-| Uncommitted changes carried over | `docs/fork-working-tree.patch` |
+|                                  |                                                                                                                |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Base commit                      | `a9ddffab5db71d06427f5d062352aff3e021c90a` — _"Fix the blink, enlarge and turn the laptop, drop all comments"_ |
+| Forked from                      | the **working tree**, not the commit                                                                           |
+| Uncommitted changes carried over | `docs/fork-working-tree.patch`                                                                                 |
 
 ## Why the working tree and not `HEAD`
 
@@ -47,12 +47,12 @@ The `README.md` inherited from the source claims 41 tests; the real count is 60.
 openable HTML in `docs/reference/`. Both files are committed and are the reference for the
 registry-driven rewrite of `Character.tsx`.
 
-| | `scene` | `desk` |
-| --- | --- | --- |
-| `<path>` elements | 96 | 96 |
-| `[data-fl]` layer groups | 14 | 14 |
-| `[pathLength]` drawn strokes | 64 | 64 |
-| `[data-fillel]` filled shapes | 22 | 22 |
+|                               | `scene` | `desk` |
+| ----------------------------- | ------- | ------ |
+| `<path>` elements             | 96      | 96     |
+| `[data-fl]` layer groups      | 14      | 14     |
+| `[pathLength]` drawn strokes  | 64      | 64     |
+| `[data-fillel]` filled shapes | 22      | 22     |
 
 Re-run it at any time to diff the current output against the committed baseline:
 

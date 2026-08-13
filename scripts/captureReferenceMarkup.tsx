@@ -3,7 +3,8 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { DeskCharacter } from '../src/index'
-import type { Theme, VariantName } from '../src/types'
+import type { VariantName } from '../src/geometry'
+import type { Theme } from '../src/types'
 import { facundo } from '../personas/index'
 
 const packageRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
