@@ -1,5 +1,5 @@
 import type { Ref } from 'react'
-import { draw, EASE_DRAW, fill } from '../anim'
+import { drawStroke, EASE_DRAW, fadeIn } from '../animation'
 import type { Persona } from '../types'
 
 export interface CharacterRefs {
@@ -30,9 +30,16 @@ const Eye = ({ cx }: { cx: number }) => (
       stroke="var(--dc-ink)"
       strokeWidth="2.6"
       pathLength={1}
-      style={draw(0.4, 1.62)}
+      style={drawStroke(0.4, 1.62)}
     />
-    <circle cx={cx} cy="212" r="2.6" fill="var(--dc-ink)" data-fillel="" style={fill(0.3, 1.72)} />
+    <circle
+      cx={cx}
+      cy="212"
+      r="2.6"
+      fill="var(--dc-ink)"
+      data-fillel=""
+      style={fadeIn(0.3, 1.72)}
+    />
   </>
 )
 
@@ -65,7 +72,7 @@ export const Character = ({
               fill="var(--dc-shade)"
               transform="translate(8 7)"
               data-fillel=""
-              style={fill(0.5, 1.5)}
+              style={fadeIn(0.5, 1.5)}
             />
             {hair === 'long' ? (
               <path
@@ -75,7 +82,7 @@ export const Character = ({
                 strokeWidth="3"
                 strokeLinejoin="round"
                 pathLength={1}
-                style={draw(0.6, 1.55)}
+                style={drawStroke(0.6, 1.55)}
               />
             ) : null}
           </g>
@@ -85,17 +92,25 @@ export const Character = ({
               d="M186,318 C188,352 185,396 189,439 L253,439 C256,396 252,352 254,316 Z"
               fill="var(--dc-fill)"
               data-fillel=""
-              style={fill(0.4, 1.4)}
+              style={fadeIn(0.4, 1.4)}
             />
             <path
               d="M204,340 C216,356 236,356 248,338 C244,364 208,364 204,340 Z"
               fill="var(--dc-shade)"
               data-fillel=""
-              style={fill(0.4, 1.7)}
+              style={fadeIn(0.4, 1.7)}
             />
             <g fill="none" stroke="var(--dc-ink)" strokeWidth="3" strokeLinecap="round">
-              <path d="M187,330 C189,358 186,400 190,439" pathLength={1} style={draw(0.5, 1.42)} />
-              <path d="M253,326 C251,356 254,400 250,439" pathLength={1} style={draw(0.5, 1.42)} />
+              <path
+                d="M187,330 C189,358 186,400 190,439"
+                pathLength={1}
+                style={drawStroke(0.5, 1.42)}
+              />
+              <path
+                d="M253,326 C251,356 254,400 250,439"
+                pathLength={1}
+                style={drawStroke(0.5, 1.42)}
+              />
             </g>
           </g>
 
@@ -104,7 +119,7 @@ export const Character = ({
               d="M52,580 C48,516 86,486 140,464 C168,451 184,443 190,431 L250,429 C258,441 288,451 320,465 C378,487 398,518 394,580 C330,558 286,576 232,562 C176,550 118,570 52,566 Z"
               fill="var(--dc-shade)"
               data-fillel=""
-              style={fill(0.5, 1.95)}
+              style={fadeIn(0.5, 1.95)}
             />
           </g>
           <g
@@ -119,33 +134,33 @@ export const Character = ({
               fill="var(--dc-fill)"
               strokeWidth="3.2"
               pathLength={1}
-              style={draw(0.5, 1.6)}
+              style={drawStroke(0.5, 1.6)}
             />
             <path
               d="M52,585 C48,516 86,486 140,464 C168,451 184,443 190,431"
               strokeWidth="3.4"
               pathLength={1}
-              style={draw(0.7, 1.62, EASE_DRAW)}
+              style={drawStroke(0.7, 1.62, EASE_DRAW)}
             />
             <path
               d="M250,429 C258,441 288,451 320,465 C378,487 398,518 394,585"
               strokeWidth="3.4"
               pathLength={1}
-              style={draw(0.7, 1.62, EASE_DRAW)}
+              style={drawStroke(0.7, 1.62, EASE_DRAW)}
             />
             <path
               d="M74,542 C128,528 180,550 236,538 C292,528 338,548 374,536"
               strokeWidth="3"
               opacity="0.85"
               pathLength={1}
-              style={draw(0.8, 1.86)}
+              style={drawStroke(0.8, 1.86)}
             />
             <path
               d="M142,466 C158,480 164,504 161,534 M334,486 C324,500 320,518 322,538"
               strokeWidth="2.2"
               opacity="0.5"
               pathLength={1}
-              style={draw(0.6, 2)}
+              style={drawStroke(0.6, 2)}
             />
           </g>
 
@@ -155,7 +170,7 @@ export const Character = ({
                 d="M292,178 C308,212 306,272 286,308 C299,272 301,220 292,178 Z"
                 fill="var(--dc-shade)"
                 data-fillel=""
-                style={fill(0.5, 1.7)}
+                style={fadeIn(0.5, 1.7)}
               />
               <path
                 d="M120,152 C119,127 176,109 220,110 C263,109 321,127 320,152 C331,177 330,198 330,218 C331,257 320,290 300,310 C283,338 257,359 220,366 C185,359 157,337 140,310 C119,289 110,257 110,218 C109,198 111,177 120,152 Z"
@@ -164,7 +179,7 @@ export const Character = ({
                 strokeWidth="3.4"
                 strokeLinejoin="round"
                 pathLength={1}
-                style={draw(0.7, 0.95, EASE_DRAW)}
+                style={drawStroke(0.7, 0.95, EASE_DRAW)}
               />
             </g>
 
@@ -176,7 +191,7 @@ export const Character = ({
                 strokeWidth="3"
                 strokeLinejoin="round"
                 pathLength={1}
-                style={draw(0.45, 1.22)}
+                style={drawStroke(0.45, 1.22)}
               />
               <path
                 d="M326,218 C340,216 346,234 338,250 C332,262 320,260 316,252"
@@ -185,7 +200,7 @@ export const Character = ({
                 strokeWidth="3"
                 strokeLinejoin="round"
                 pathLength={1}
-                style={draw(0.45, 1.22)}
+                style={drawStroke(0.45, 1.22)}
               />
               <path
                 d="M110,234 C104,236 104,244 110,244 C114,244 114,238 111,238"
@@ -194,7 +209,7 @@ export const Character = ({
                 strokeWidth="2"
                 strokeLinecap="round"
                 pathLength={1}
-                style={draw(0.4, 1.4)}
+                style={drawStroke(0.4, 1.4)}
               />
               <path
                 d="M330,234 C336,236 336,244 330,244 C326,244 326,238 329,238"
@@ -203,7 +218,7 @@ export const Character = ({
                 strokeWidth="2"
                 strokeLinecap="round"
                 pathLength={1}
-                style={draw(0.4, 1.4)}
+                style={drawStroke(0.4, 1.4)}
               />
             </g>
 
@@ -212,7 +227,7 @@ export const Character = ({
                 d="M232,206 C236,224 239,236 244,244 C240,250 234,251 229,249 C238,242 235,222 232,206 Z"
                 fill="var(--dc-shade)"
                 data-fillel=""
-                style={fill(0.4, 1.78)}
+                style={fadeIn(0.4, 1.78)}
               />
               <path
                 d="M228,196 C232,218 236,234 244,246 C240,254 230,255 222,250"
@@ -222,7 +237,7 @@ export const Character = ({
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 pathLength={1}
-                style={draw(0.5, 1.56)}
+                style={drawStroke(0.5, 1.56)}
               />
             </g>
 
@@ -235,7 +250,7 @@ export const Character = ({
                   strokeWidth="2.8"
                   strokeLinecap="round"
                   pathLength={1}
-                  style={draw(0.45, 1.68)}
+                  style={drawStroke(0.45, 1.68)}
                 />
                 <path
                   d="M206,318 C216,322 230,322 240,318"
@@ -245,7 +260,7 @@ export const Character = ({
                   strokeLinecap="round"
                   opacity="0.6"
                   pathLength={1}
-                  style={draw(0.4, 1.76)}
+                  style={drawStroke(0.4, 1.76)}
                 />
               </g>
               <g ref={refs.mouthO} style={{ opacity: 0 }}>
@@ -276,7 +291,7 @@ export const Character = ({
                 rx="13"
                 fill="var(--dc-fill)"
                 data-fillel=""
-                style={fill(0.4, 1.4)}
+                style={fadeIn(0.4, 1.4)}
               />
               <rect
                 x="228"
@@ -286,7 +301,7 @@ export const Character = ({
                 rx="13"
                 fill="var(--dc-fill)"
                 data-fillel=""
-                style={fill(0.4, 1.4)}
+                style={fadeIn(0.4, 1.4)}
               />
               <rect
                 x="143"
@@ -296,7 +311,7 @@ export const Character = ({
                 rx="8"
                 fill="var(--dc-shade)"
                 data-fillel=""
-                style={fill(0.4, 1.68)}
+                style={fadeIn(0.4, 1.68)}
               />
               <rect
                 x="232"
@@ -306,7 +321,7 @@ export const Character = ({
                 rx="8"
                 fill="var(--dc-shade)"
                 data-fillel=""
-                style={fill(0.4, 1.68)}
+                style={fadeIn(0.4, 1.68)}
               />
             </g>
 
@@ -361,7 +376,7 @@ export const Character = ({
                   rx="13"
                   strokeWidth="4"
                   pathLength={1}
-                  style={draw(0.6, 1.42, EASE_DRAW)}
+                  style={drawStroke(0.6, 1.42, EASE_DRAW)}
                 />
                 <rect
                   x="228"
@@ -371,19 +386,19 @@ export const Character = ({
                   rx="13"
                   strokeWidth="4"
                   pathLength={1}
-                  style={draw(0.6, 1.42, EASE_DRAW)}
+                  style={drawStroke(0.6, 1.42, EASE_DRAW)}
                 />
                 <path
                   d="M213,198 C218,193 223,193 228,198"
                   strokeWidth="4"
                   pathLength={1}
-                  style={draw(0.35, 1.6)}
+                  style={drawStroke(0.35, 1.6)}
                 />
                 <path
                   d="M139,200 C128,200 118,206 114,216 M302,200 C313,200 323,206 327,216"
                   strokeWidth="3.4"
                   pathLength={1}
-                  style={draw(0.4, 1.64)}
+                  style={drawStroke(0.4, 1.64)}
                 />
               </g>
             ) : null}
@@ -394,13 +409,13 @@ export const Character = ({
                   d="M144,172 C160,160 186,157 210,164 C210,172 205,176 199,174 C182,168 166,170 152,180 Z"
                   fill="var(--dc-ink)"
                   data-fillel=""
-                  style={fill(0.35, 1.74)}
+                  style={fadeIn(0.35, 1.74)}
                 />
                 <path
                   d="M232,160 C252,148 278,148 296,160 C296,168 291,172 285,169 C270,160 252,160 240,168 Z"
                   fill="var(--dc-ink)"
                   data-fillel=""
-                  style={fill(0.35, 1.78)}
+                  style={fadeIn(0.35, 1.78)}
                 />
               </g>
               <g ref={refs.browsUp} style={{ opacity: 0 }}>
@@ -424,7 +439,7 @@ export const Character = ({
               strokeWidth="3.4"
               strokeLinejoin="round"
               pathLength={1}
-              style={draw(0.85, 1.05, EASE_DRAW)}
+              style={drawStroke(0.85, 1.05, EASE_DRAW)}
             />
             <path
               d="M322,116 C310,140 292,152 268,156 C292,158 312,150 324,134"
@@ -433,7 +448,7 @@ export const Character = ({
               strokeWidth="2.6"
               strokeLinecap="round"
               pathLength={1}
-              style={draw(0.5, 1.38)}
+              style={drawStroke(0.5, 1.38)}
             />
             <path
               d="M170,118 C196,94 238,88 272,100"
@@ -442,7 +457,7 @@ export const Character = ({
               strokeWidth="2.6"
               strokeLinecap="round"
               pathLength={1}
-              style={draw(0.5, 1.42)}
+              style={drawStroke(0.5, 1.42)}
             />
             <path
               d="M150,150 C170,134 196,128 220,128"
@@ -452,7 +467,7 @@ export const Character = ({
               strokeLinecap="round"
               opacity="0.75"
               pathLength={1}
-              style={draw(0.5, 1.48)}
+              style={drawStroke(0.5, 1.48)}
             />
             <path
               d="M116,198 C113,216 115,230 122,240"
@@ -461,7 +476,7 @@ export const Character = ({
               strokeWidth="2.8"
               strokeLinecap="round"
               pathLength={1}
-              style={draw(0.4, 1.5)}
+              style={drawStroke(0.4, 1.5)}
             />
             <path
               d="M326,192 C328,208 326,222 320,234"
@@ -470,7 +485,7 @@ export const Character = ({
               strokeWidth="2.8"
               strokeLinecap="round"
               pathLength={1}
-              style={draw(0.4, 1.5)}
+              style={drawStroke(0.4, 1.5)}
             />
           </g>
         </g>
